@@ -12,6 +12,7 @@ For now, this will only be a console app consisting of interview-style read/writ
 The current version was developed on a Windows machine with visual studio. As I learn more I will use conditional compilation to ensure portability to Mac and Linux.
 
 ## TODO:
+### Game Development:
 Create game class - 
   1) GettingToKnowLinux Intro session to get new learners comfortable with Linux/Unix command line; 
 Ceate character class - mainCharacter, advisor, ally, civilian, enemy
@@ -26,3 +27,5 @@ Create experience and level system
  Create storyline
   1) The story line will probably be a pretty lame mix of the Bleach Anime show with Final Fantasy-like epic boss battles and unwinnable missions.
 
+### Code improvements:
+1) Change while loops for player options to use Regex
