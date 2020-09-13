@@ -8,7 +8,7 @@ For now, this will only be a console app consisting of interview-style read/writ
 ## Graphics
 For now, this will only be a console app consisting of interview-style read/write input and output operations. Future versions will have graphics including characters, maps, icons, and rewards.
 
-##Portability/Compatabilty
+## Portability/Compatabilty
 The current version was developed on a Windows machine with visual studio. As I learn more I will use conditional compilation to ensure portability to Mac and Linux.
 
 ## TODO:
