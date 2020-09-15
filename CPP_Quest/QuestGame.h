@@ -1,5 +1,9 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "QuestCharacter.h"
+#include <filesystem>
+
 
 #ifndef QuestGame_H
 #define QuestGame_H
@@ -7,9 +11,13 @@
 class QuestGame {
 	
 private:
-	const std::string gameFilePath;
+	std::filesystem::path gameFilePath;
 public: 
-	QuestGame(const std::string gameFilePath);
+	QuestGame(std::filesystem::path gameFilePath);
+	void StartGame(void);
+	std::vector<QuestCharacter> advisorList;
+	std::vector<QuestCharacter> allyList;
+	std::vector<QuestCharacter> enemyList;
 };
 
 #endif
