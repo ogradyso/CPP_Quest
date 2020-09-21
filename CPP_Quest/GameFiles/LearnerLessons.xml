@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cppQuestLevels>
+  <levelOne>
+    <lessonName>Hello World!</lessonName>
+    <prompts>In this lesson we are going to write our first C++ program to print "Hello World!" to the conosle.\n_
+    The first few lines of a C++ progam usually containg the code libraries the program needs to run properly. These are referred to as "inlcude" statements and look like this:\n\n#inlcude &lt;NameOfLibrary&gt;\n\nSometimes these inlcude statments will vary in how they are written but we are getting ahead of ourselves.\nWrite the include statement for the input-output stream (iostream) library:\n_
+    </prompts>
+  </levelOne>
+  
+</cppQuestLevels>

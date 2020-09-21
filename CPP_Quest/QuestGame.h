@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "QuestCharacter.h"
+#include "QuestLearner.h"
 #include <filesystem>
 
 

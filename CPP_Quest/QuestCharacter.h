@@ -18,8 +18,9 @@ class MainCharacter : QuestCharacter {
 private :
 	int experiencePoints;
 	long totalExperiencePoints;
-	std::string learningClass;
-	std::string playerClass;
+	std::string strLearningClass;
+	QuestLearner learnerClass;
+	std::string strPlayerClass;
 	int learningLevel;
 	int playerLevel;
 	double playerAttack;
