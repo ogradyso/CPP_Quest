@@ -4,6 +4,7 @@
 #include <vector>
 
 //forward declaration of DialogueNode class
+class PromptNode;
 class DialogueNode;
 
 class DialogueOption {
@@ -13,10 +14,11 @@ public:
 	int returnCode;
 };
 
-class DialogueNode {
+class PromptNode {
 public:
-	std::string text;
-	std::vector<DialogueOption> dialogueOptions;
+	std::string promptText;
+	std::string answerText;
+	std::vector<PromptNode*> promptSequence;
 };
 
 class QuestDialogue
@@ -29,6 +31,18 @@ public:
 	void destroyDialogue();
 
 	int performDialogue();
+
+private:
+	std::vector<DialogueNode*> dialogueNodes;
+};
+
+class QuestLessonPrompt
+{
+public:
+	QuestLessonPrompt();
+
+
+	void init(std::string, std::string, std::string);
 
 private:
 	std::vector<DialogueNode*> dialogueNodes;
