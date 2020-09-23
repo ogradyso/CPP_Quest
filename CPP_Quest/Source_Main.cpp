@@ -59,6 +59,7 @@ void StartGame(void) {
 		std::filesystem::path gameFilePath = CreateNewGameFile(playerName, learningClass, playerClass);
 		QuestGame NowPlaying{gameFilePath};
 		NowPlaying.StartGame();
+		NowPlaying.StartLesson();
 	}
 	else {
 		std::cout << "It looks like a game file with this name already exists.\n";

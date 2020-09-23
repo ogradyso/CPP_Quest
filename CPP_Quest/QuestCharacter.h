@@ -19,7 +19,7 @@ private :
 	int experiencePoints;
 	long totalExperiencePoints;
 	std::string strLearningClass;
-	QuestLearner learnerClass;
+	//QuestLearner learnerClass;
 	std::string strPlayerClass;
 	int learningLevel;
 	int playerLevel;

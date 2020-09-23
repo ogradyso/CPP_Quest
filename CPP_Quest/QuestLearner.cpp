@@ -3,13 +3,17 @@
 
 
 QuestLearner::QuestLearner()
-{}
+{
+
+}
 
 std::vector<std::string> QuestLearner::getLessonInfo() {
-	tinyxml2::XMLDocument doc;
+	/*tinyxml2::XMLDocument doc;
 	doc.LoadFile("\GameFiles\LearnerLessons.xml");
 	const char* lessonName = doc.FirstChildElement("PLAY")->FirstChildElement("TITLE")->GetText();
-	printf("Name of play (1): %s\n", title);
+	printf("Name of play (1): %s\n", title);*/
+	std::vector<std::string> test;
+	return test;
 }
 
 void QuestLearner :: startNextLesson() {

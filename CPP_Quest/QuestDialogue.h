@@ -18,9 +18,10 @@ class PromptNode {
 public:
 	std::string promptText;
 	std::string answerText;
-	std::vector<PromptNode*> promptSequence;
 };
 
+
+//character dialogue:
 class QuestDialogue
 {
 public:
@@ -30,12 +31,14 @@ public:
 	void init(std::string);
 	void destroyDialogue();
 
-	int performDialogue();
+	void performDialogue();
 
 private:
 	std::vector<DialogueNode*> dialogueNodes;
 };
 
+
+//Lesson prompt:
 class QuestLessonPrompt
 {
 public:
@@ -43,7 +46,8 @@ public:
 
 
 	void init(std::string, std::string, std::string);
+	void performDialogue();
 
 private:
-	std::vector<DialogueNode*> dialogueNodes;
+	std::vector<PromptNode*> promptSequence;
 };
