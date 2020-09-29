@@ -1,0 +1,127 @@
+<IntroLessons>
+  <Lesson1>
+    <LessonTitle>Hello World!</LessonTitle>
+      <LessonPrompts>
+          <Prompt>In this lesson we are going to write our first C++ program to print "Hello World!" to the conosle. Enter OK:
+          </Prompt>
+          <Prompt>The first few lines of a C++ progam usually containg the code libraries the program needs to run properly. These are referred to as "inlcude" statements and look like this:
+
+          #include &amp;lt;NameOfLibrary&amp;gt;
+
+          Sometimes these inlcude statments will vary in how they are written but we are getting ahead of ourselves.
+          Write the include statement for the input-output stream (iostream) library:
+          </Prompt>
+          <Prompt>Every C++ program uses a driver function named "main()" which represents the entry point for the program. The main function returns an integer so it preceeded by the keyword "int". Enter the proper main function now:
+          </Prompt>
+          <Prompt>The scope of the main function begins with a curly brace "{" which is usually placed on the following line. Begin the scope of the main function by entering an opening curly brace:
+          </Prompt>
+          <Prompt>Now you can use the iostream library we entered on the first line to print to the console. You can do this by calling the cout function from the std (standard, often pronounced "stood") library.
+                  You do this by typing "std::cout and then using the input operator "&lt;&lt;" followed by the output you would like to print: "Hello World!\"\n and remember to end the line with a semicolon (;)
+          </Prompt>
+          <Prompt>Finally, you need to close out the scope of the main function to tell the compiler that the function is complete. You do this by entering a closing curly brace: 
+          </Prompt>
+      </LessonPrompts>
+      <LessonAnswers>
+          <Answer>OK</Answer>
+          <Answer>#include &lt;iostream&gt;</Answer>
+          <Answer>int main()</Answer>
+          <Answer>{</Answer>
+          <Answer>std::cout &lt;&lt; \"Hello World!\";</Answer>
+          <Answer>}</Answer>
+       </LessonAnswers>
+       <LessonRewards>
+          <Experience></Experience>
+          <Items></Items>
+          <Special></Special>
+       </LessonRewards>
+  </Lesson1>
+  
+  <Lesson2>
+    <LessonTitle>Creating Functions</LessonTitle>
+    <LessonPrompts>
+      <Prompt>In this lesson, we are going to practice writing functions: (enter \"OK\")
+      </Prompt>
+      <Prompt>Functions must be declared before they are invoked (called). They can also be nested within each other and as you learned in the previous lesson, the main() function initiates the program and calls other functions.
+      Lets say we want to add a function to our previous program to count the letters in \"Hello World\", where would we place this function (enter the line number:
+      1 #include &lt;iostream&gt;
+      2
+      3 int main() 
+      4 {
+      5
+      6 std::cout &lt;&lt; "Hello World!";
+      7
+      8 }
+      </Prompt>
+      <Prompt>
+        Function declarations consist of 3 parts: return type (function output), function name, and arguments (function input type and variable name pairs). The executable commands of a function occur within the function's scope which is identified by opening and closing curly braces: {}.
+        For our counting function, we will return an integer type (keyword: int). We will cover data types in an upcoming side quest. For now, you just need to understand that an integer (int) represents a whole number between -2147483647 and 2147483647 depending on your operating system.).
+        Enter the key word for the functions return type below:
+      </Prompt>
+      <Prompt>
+        Function names and function arguments (input) usually go together on the same line. The function name should start with a letter and should be concise yet descriptive. We will call our function \"countElements\". Function names are followed by a set of parenthese containing the type(s)
+        followed by the name(s) of variables passed as arguments. In our case we will pass a pointer to array of characters (char*) called \"ptrChar\". We will cover pointers extensively in a future lesson, for now, just understand that a pointer 'points' to an address in memory.
+        Enter the function name followed by a set of parentheses containing the a char* type called prtChar:
+      </Prompt>
+      <Prompt>
+        Now lets start the scope of our new function with an opening curly brace:
+      </Prompt>
+      <Prompt>
+        The type that we passed as an argument to this function is a pointer to the first element inside an array of characters. C++ iS BASED ON C, which does not have user defined types such as strings. Instead, words, sentences and other sets of printable characters are represented as arrays
+        of characters (char[]). Arrays are continguous sections of your computer's memory. Anyway, we are getting way ahead of ourselves. Essentially, we need to iterate (move sequentially) through all of the elements of our character array ("Hello World") and count the number of printable
+        characters that it contains. We will do this using a \"for loop\", a type of control flow that as you geuessed it, we will cover in more depth in a future lesson. For now, simply re-type the following line into the console and think of this as a \"magical incantation\" that works 
+        because I told you it does:
+        NEED TO WRITE THE CODE!!
+      </Prompt>
+      <Prompt>
+        Great, now we can close the scope of our function using a closing curly brace and don't forget the semicolon!:
+      </Prompt>
+      <Prompt>
+       Okay this is what our program looks like so far:
+       
+        1 #include &lt;iostream&gt;
+        2
+        3 int countElements(char* ptrChar)
+        4 {
+        5   NEED TO WRITE THE CODE!!
+        6 };
+        7
+        3 int main()
+        4 {
+        5
+        6 std::cout &lt;&lt; "Hello World!";
+        7
+        8 }
+        
+      Now we need to create an array of characters (char[]) to send as the input, which we will do on line 7. Again, we will cover this in more depth later, for now just re-type the following line and think of this as another \"magical incantation\":
+      NEED TO WRITE THE CODE!!
+      </Prompt>
+      <Prompt>
+      Okay, now we can get to the point of this whole lesson! We are going to call our countElements function from our main() function and \"pass\" the character array as input. We will also save the return value by declaring an integer. Again, we will cover variable declaration in the next lesson. 
+      For now, here is another \"magical incantation\" I would like you to re-type:
+      int count = countElements(NEED TO WRITE THE CODE!!);
+      </Prompt>
+      <Prompt>
+      Excellent! You just declared and called your first function! But now we need to print the output to the console so that the user knows how many printable characters are found in the char array \"Hello World\". For this you can rely on the knowledge of std::cout from lesson 1.
+      In your response, make sure to tell the user what the number means by first passing the phrase \"Number of printable characters:"
+      </Prompt>
+    </LessonPrompts>
+    <LessonAnswers>
+      <Answer>OK</Answer>
+      <Answer>2</Answer>
+      <Answer>int</Answer>
+      <Answer>CountElements(char* charPtr)</Answer>
+      <Answer>{</Answer>
+      <Answer>NEED TO WRITE THE CODE!!</Answer>
+      <Answer>};</Answer>
+      <Answer>NEED TO WRITE THE CODE!!</Answer>
+      <Answer>int count = countElements(NEED TO WRITE THE CODE!!);</Answer>
+      <Answer>std::cout &lt;&lt; "Number of printable characters:" &lt;&lt; count;</Answer>
+    </LessonAnswers>
+    <LessonRewards>
+      <Experience></Experience>
+      <Items></Items>
+      <Special></Special>
+    </LessonRewards>
+  </Lesson2>
+
+</IntroLessons>

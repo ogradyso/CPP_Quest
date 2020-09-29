@@ -9,9 +9,13 @@ class QuestLearner {
 private:
 	int learnerLevel;
 	int nextLesson;
+	std::string nextLessonTitle;
+	std::vector<std::string> nextLessonPrompts;
+	std::vector<std::string> nextLessonAnswers;
 public: 
+	std::string learnerClass;
 	QuestLearner();
-	std::vector<std::string> getLessonInfo();
+	void getLessonInfo(const char*, const char*, const char*);
 	void startNextLesson();
 
 };

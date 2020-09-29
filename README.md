@@ -30,4 +30,5 @@ Create experience and level system
   1) The story line will probably be a pretty lame mix of the Bleach Anime show with Final Fantasy-like epic boss battles and unwinnable missions.
 
 ### Code improvements:
-1) Create a generic inputValidation function
+1) Change gameFiles to XML rather than text files
+
