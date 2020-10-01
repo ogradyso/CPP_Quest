@@ -3,7 +3,6 @@
 #include <vector>
 #include "QuestCharacter.h"
 #include "QuestLearner.h"
-#include "QuestDialogue.h"
 #include <filesystem>
 
 
@@ -16,7 +15,6 @@ private:
 	std::filesystem::path gameFilePath;
 public: 
 	QuestGame(std::filesystem::path gameFilePath);
-	QuestLessonPrompt nextLesson;
 	void StartGame(void);
 	void StartLesson();
 	std::vector<QuestCharacter> advisorList;

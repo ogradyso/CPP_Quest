@@ -1,3 +1,0 @@
-GameFilePath, C:\Users\12105\source\repos\CPP_Quest\CPP_Quest\GameFiles\Shaun.txt
-MainCharacter, playerName, learningClass, playerClass, learningLevel, playerLevel, playerAttack, playerDefense, playerMagAttack, playerMagDefense, playerCharisma, playerLuck
-playerStats,Shaun,H,A,0,0,0,0,0,0,0,0

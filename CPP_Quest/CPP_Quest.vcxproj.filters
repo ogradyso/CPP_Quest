@@ -27,9 +27,6 @@
     <ClCompile Include="QuestLearner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QuestDialogue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuestGame.h">
@@ -39,9 +36,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QuestLearner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QuestDialogue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

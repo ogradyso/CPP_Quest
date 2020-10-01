@@ -16,7 +16,7 @@ public:
 
 class MainCharacter : QuestCharacter {
 private :
-	QuestLearner learnerClass;
+	//QuestLearner learnerClass;
 	/*int experiencePoints;
 	long totalExperiencePoints;
 	std::string strLearningClass;
@@ -30,7 +30,7 @@ private :
 	double playerCharisma;
 	double playerLuck;*/
 public : 
-	MainCharacter(std::string characterName, std::string characterType, std::string learnerClassName);
+	//MainCharacter(std::string characterName, std::string characterType);
 };
 
 class AllyCharacter : QuestCharacter {

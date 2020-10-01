@@ -6,9 +6,9 @@ QuestCharacter :: QuestCharacter(std::string characterName, std::string characte
 	: characterName(characterName), characterType(characterType)
 {}
 
-MainCharacter::MainCharacter(std::string characterName, std::string characterType, std::string learnerClassName)
-	: QuestCharacter(characterName, characterType)
-{
-	this->learnerClass = QuestLearner();
-}
+//MainCharacter::MainCharacter(std::string characterName, std::string characterType)
+//	: QuestCharacter(characterName, characterType)
+//{
+//	this->learnerClass = QuestLearner();
+//}
 

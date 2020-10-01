@@ -55,6 +55,9 @@ void QuestDialogue::performDialogue() {
 
 }
 
+QuestLessonPrompt::QuestLessonPrompt()
+{}
+
 //set up the prompt sequence:
 void QuestLessonPrompt::init(std::string lessonName, std::string lessonDialogue, std::string lessonAnswers) {
 	//split string based on delimiter patter using regex patterm matching:

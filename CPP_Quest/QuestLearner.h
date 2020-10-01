@@ -1,6 +1,6 @@
 #pragma once
-#include "QuestDialogue.h"
-
+#include <string>
+#include <vector>
 
 #ifndef QuestLearner_H
 #define QuestLearner_H
