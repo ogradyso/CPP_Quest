@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include "QuestCharacter.h"
-#include "QuestLearner.h"
 #include <filesystem>
 
 
@@ -13,13 +12,11 @@ class QuestGame {
 	
 private:
 	std::filesystem::path gameFilePath;
+	MainCharacter player;
 public: 
 	QuestGame(std::filesystem::path gameFilePath);
 	void StartGame(void);
 	void StartLesson();
-	std::vector<QuestCharacter> advisorList;
-	std::vector<QuestCharacter> allyList;
-	std::vector<QuestCharacter> enemyList;
 };
 
 #endif

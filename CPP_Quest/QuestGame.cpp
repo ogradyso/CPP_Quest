@@ -4,8 +4,8 @@
 #include <filesystem>
 #include <fstream>
 
-QuestGame :: QuestGame(std::filesystem::path gameFilePath)
-	: gameFilePath(gameFilePath), advisorList(), allyList(), enemyList()
+QuestGame::QuestGame(std::filesystem::path gameFilePath)
+	: gameFilePath(gameFilePath)
 {}
 
 void QuestGame :: StartGame(void) {
@@ -17,4 +17,5 @@ void QuestGame :: StartGame(void) {
 void QuestGame::StartLesson() {
 	
 }
+
 

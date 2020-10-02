@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "QuestLearner.h"
 
 #ifndef QuestCharacter_H
 #define QuestCharacter_H
@@ -11,55 +11,18 @@ protected:
 	std::string characterName;
 	std::string characterType;
 public:
+	QuestCharacter();
 	QuestCharacter(std::string characterName, std::string characterType);
 };
 
 class MainCharacter : QuestCharacter {
 private :
-	//QuestLearner learnerClass;
-	/*int experiencePoints;
-	long totalExperiencePoints;
-	std::string strLearningClass;
-	std::string strPlayerClass;
-	int learningLevel;
-	int playerLevel;
-	double playerAttack;
-	double playerDefense;
-	double playerMagAttack;
-	double playerMagDefense;
-	double playerCharisma;
-	double playerLuck;*/
+	QuestLearner learner;
+
 public : 
-	//MainCharacter(std::string characterName, std::string characterType);
+	MainCharacter();
+	MainCharacter(std::string characterName, std::string characterType);
 };
 
-class AllyCharacter : QuestCharacter {
-
-};
-
-class AdvisorCharacter : QuestCharacter {
-
-};
-
-class CivilianCharacter : QuestCharacter {
-
-};
-
-class EnemyCharacter : QuestCharacter {
-
-
-};
-
-class Archer : MainCharacter {
-
-};
-
-class Knight : MainCharacter {
-
-};
-
-class Mage : MainCharacter {
-
-};
 
 #endif
