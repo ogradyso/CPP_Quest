@@ -1,5 +1,6 @@
 #include "QuestLearner.h"
 #include "tinyxml2.h"
+#include <iostream>
 
 
 QuestLearner::QuestLearner()
@@ -11,11 +12,11 @@ QuestLearner::QuestLearner()
 	this->nextLessonPrompts;
 }
 
-void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel, const char* gameFilePath)
+void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel, const char* lessonFilePath)
 {
 	tinyxml2::XMLDocument xmlDoc;
 
-	tinyxml2::XMLError eResult = xmlDoc.LoadFile(gameFilePath);
+	tinyxml2::XMLError eResult = xmlDoc.LoadFile(lessonFilePath);
 
 	tinyxml2::XMLNode* LessonRoot = xmlDoc.FirstChildElement(lessonRoot);
 
@@ -51,5 +52,9 @@ void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel
 };
 
 void QuestLearner :: startNextLesson() {
+	for (std::string prompt : this->nextLessonPrompts)
+	{
+		std::cout << prompt << '\n';
 
+	}
 }

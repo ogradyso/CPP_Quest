@@ -29,12 +29,17 @@ QuestGame::QuestGame(std::filesystem::path gameFilePath)
 void QuestGame :: StartGame(void) {
 	bool continueGame = true;
 	while (continueGame) {
-		StartLesson();
+		const char* lessonRoot = "IntroLessons";
+		const char* lessonLevel = "Lesson1";
+		std::filesystem::path gameFilepath = std::filesystem::current_path().string() + "\\QuestFiles\\IntroLessons.xml";
+		QuestLearner mainCharacter = QuestLearner();
+		mainCharacter.getLessonInfo(lessonRoot, lessonLevel, gameFilepath.string().c_str());
+		StartLesson(mainCharacter);
 		std::string continueChoice = inputVal("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
 
 		switch (*continueChoice.begin()) {
 		case 'C':
-			StartLesson();
+			StartLesson(mainCharacter);
 			break;
 		case 'S':
 			SaveGame();
@@ -52,8 +57,9 @@ void QuestGame :: StartGame(void) {
 
 }
 
-void QuestGame::StartLesson() {
+void QuestGame::StartLesson(QuestLearner learningCharacter) {
 	std::cout << "Starting the next lesson..." << '\n';
+	learningCharacter.startNextLesson();
 }
 
 void QuestGame::SaveGame() {
