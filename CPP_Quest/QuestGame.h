@@ -17,6 +17,7 @@ public:
 	QuestGame(std::filesystem::path gameFilePath);
 	void StartGame(void);
 	void StartLesson();
+	void SaveGame();
 };
 
 #endif

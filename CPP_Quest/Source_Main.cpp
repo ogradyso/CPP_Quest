@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "QuestGame.h"
 #include "QuestCharacter.h"
@@ -21,6 +22,22 @@ bool checkForGameFile(std::string fileName) {
 	}
 }
 
+std::string inputValidation(std::string strPatternOfOptions, std::string promptToUser, std::string followUpPrompt) {
+	std::string userInput;
+	std::regex patternOfOptions{ (strPatternOfOptions) };
+	std::cout << promptToUser;
+	std::cin >> userInput;
+	while (true) {
+		if (std::regex_match(userInput, patternOfOptions)) {
+			return userInput;
+		}
+		else {
+			std::cout << followUpPrompt;
+			std::cin >> userInput;
+		}
+	}
+}
+
 std::filesystem::path CreateNewGameFile(std::string playerName, std::string learningClass, std::string characterClass) {
 	std::string strGameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + playerName + ".xml";
 	auto ptrGameFilePath = strGameFilePath.c_str();
@@ -40,22 +57,6 @@ std::filesystem::path CreateNewGameFile(std::string playerName, std::string lear
 	std::filesystem::path gameFilePath{ strGameFilePath };
 	return gameFilePath;
 
-}
-
-std::string inputValidation(std::string strPatternOfOptions, std::string promptToUser, std::string followUpPrompt) {
-	std::string userInput;
-	std::regex patternOfOptions{ (strPatternOfOptions) };
-	std::cout << promptToUser;
-	std::cin >> userInput;
-	while (true) {
-		if (std::regex_match(userInput, patternOfOptions)) {
-			return userInput;
-		}
-		else {
-			std::cout << followUpPrompt;
-			std::cin >> userInput;
-		}
-	}
 }
 
 void StartGame(void) {
@@ -96,7 +97,6 @@ void StartGame(void) {
 		std::filesystem::path gameFilePath = CreateNewGameFile(playerName, learningClass, playerClass);
 		QuestGame NowPlaying{gameFilePath};
 		NowPlaying.StartGame();
-		NowPlaying.StartLesson();
 	}
 	else {
 		std::cout << "It looks like a game file with this name already exists.\n";
@@ -104,12 +104,19 @@ void StartGame(void) {
 		if (*userPromptLoadGame.begin() = 'Y') {
 			std::string strGameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + playerName + ".txt";
 			std::filesystem::path gameFilePath{ strGameFilePath };
+			QuestGame NowPlaying{ gameFilePath };
+			NowPlaying.StartGame();
 		}
 		else {
 			std::cout << "Okay, exiting the game.";
 		}
 	}
 	std::cout << '\n';
+}
+
+void LoadGame(std::string gameFilePath) {
+	QuestGame CurrentGame = QuestGame(gameFilePath);
+
 }
 
 int main() {
