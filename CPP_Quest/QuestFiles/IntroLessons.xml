@@ -4,16 +4,18 @@
       <LessonPrompts>
           <Prompt>In this lesson we are going to write our first C++ program to print "Hello World!" to the conosle. Enter OK:
           </Prompt>
-          <Prompt>The first few lines of a C++ progam usually containg the code libraries the program needs to run properly. These are referred to as "inlcude" statements and look like this:
+          <Prompt>The first few lines of a C++ progam usually contain the code libraries the program needs to run properly. These are referred to as "inlcude" directives and they look like this:
 
           #include &amp;lt;NameOfLibrary&amp;gt;
 
           Sometimes these inlcude statments will vary in how they are written but we are getting ahead of ourselves.
           Write the include statement for the input-output stream (iostream) library:
           </Prompt>
-          <Prompt>Every C++ program uses a driver function named "main()" which represents the entry point for the program. The main function returns an integer so it preceeded by the keyword "int". Enter the proper main function now:
+          <Prompt>Every C++ program uses a driver function named "main()" which represents the entry point for the program. 
+                  The main function returns an integer so it preceeded by the keyword "int". Enter the proper main function now:
           </Prompt>
-          <Prompt>The scope of the main function begins with a curly brace "{" which is usually placed on the following line. Begin the scope of the main function by entering an opening curly brace:
+          <Prompt>The scope of the main function begins with a curly brace "{" which is usually placed on the following line. 
+                  Begin the scope of the main function by entering an opening curly brace:
           </Prompt>
           <Prompt>Now you can use the iostream library we entered on the first line to print to the console. You can do this by calling the cout function from the std (standard, often pronounced "stood") library.
                   You do this by typing "std::cout and then using the input operator "&lt;&lt;" followed by the output you would like to print: "Hello World!\"\n and remember to end the line with a semicolon (;)

@@ -16,7 +16,7 @@ public:
 	std::string learnerClass;
 	QuestLearner();
 	void getLessonInfo(const char*, const char*, const char*);
-	void startNextLesson();
+	int startNextLesson();
 
 };
 

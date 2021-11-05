@@ -59,7 +59,8 @@ void QuestGame :: StartGame(void) {
 
 void QuestGame::StartLesson(QuestLearner learningCharacter) {
 	std::cout << "Starting the next lesson..." << '\n';
-	learningCharacter.startNextLesson();
+	int expGained = learningCharacter.startNextLesson();
+	std::cout << "You gained " << expGained << " experience points!" << '\n';
 }
 
 void QuestGame::SaveGame() {

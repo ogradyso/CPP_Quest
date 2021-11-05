@@ -1,6 +1,11 @@
 #include "QuestLearner.h"
 #include "tinyxml2.h"
 #include <iostream>
+#include <boost/foreach.hpp>
+#include <boost/range/combine.hpp>
+#include <array>
+#include <filesystem>
+#include <fstream>
 
 
 QuestLearner::QuestLearner()
@@ -30,7 +35,6 @@ void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel
 	while (pListElement != nullptr)
 	{
 		const char* prompt = pListElement->GetText();
-		std::string strPrompt{ prompt };
 
 		this->nextLessonPrompts.push_back(prompt);
 
@@ -42,8 +46,6 @@ void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel
 	while (pListElement != nullptr)
 	{
 		const char* answer = pListElement->GetText();
-		std::string strPrompt{ answer };
-
 		this->nextLessonAnswers.push_back(answer);
 
 		pListElement = pListElement->NextSiblingElement("Answer");
@@ -51,10 +53,33 @@ void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel
 
 };
 
-void QuestLearner :: startNextLesson() {
-	for (std::string prompt : this->nextLessonPrompts)
+int QuestLearner :: startNextLesson() {
+	int expPoints = 0;
+	std::string lessonAnswerFile = std::filesystem::current_path().string() + "\\LessonAnswers\\LessonAnswer.cpp";;
+	std::string answer;
+	std::string prompt;
+	std::string correctAnswer;
+
+	std::fstream output_fstream;
+
+	std::filesystem::remove(lessonAnswerFile);
+	output_fstream.open(lessonAnswerFile, std::ios_base::out);
+
+	BOOST_FOREACH(boost::tie(prompt, correctAnswer), boost::combine(this->nextLessonPrompts, this->nextLessonAnswers))
 	{
 		std::cout << prompt << '\n';
+		std::string response;
+		getline(std::cin, response);
+		if (response == correctAnswer) {
+			expPoints++;
+		}
+		if (response != "OK") {
+			output_fstream << response << '\n';
+		}
 
 	}
+	output_fstream.close();
+
+	return expPoints;
+
 }
