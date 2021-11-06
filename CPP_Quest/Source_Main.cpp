@@ -39,6 +39,7 @@ std::string inputValidation(std::string strPatternOfOptions, std::string promptT
 }
 
 std::filesystem::path CreateNewGameFile(std::string playerName, std::string learningClass, std::string characterClass) {
+	const char* initExp = "0";
 	std::string strGameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + playerName + ".xml";
 	auto ptrGameFilePath = strGameFilePath.c_str();
 	//create a document:
@@ -50,6 +51,7 @@ std::filesystem::path CreateNewGameFile(std::string playerName, std::string lear
 	pPlayerElement->SetAttribute("PlayerName", playerName.c_str());
 	pPlayerElement->SetAttribute("LearningClass", learningClass.c_str());
 	pPlayerElement->SetAttribute("CharacterClass", characterClass.c_str());
+	pPlayerElement->SetAttribute("CurrentExp", initExp);
 
 	pRoot->InsertEndChild(pPlayerElement);
 

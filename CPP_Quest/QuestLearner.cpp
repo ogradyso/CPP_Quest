@@ -8,6 +8,16 @@
 #include <fstream>
 
 
+QuestLearner::QuestLearner(int savedExperience)
+{
+	this->learnerLevel = 0;
+	this->nextLesson = 0;
+	this->nextLessonAnswers;
+	this->nextLessonTitle;
+	this->nextLessonPrompts;
+	this->totalExperience = savedExperience;
+}
+
 QuestLearner::QuestLearner()
 {
 	this->learnerLevel = 0;
@@ -15,7 +25,9 @@ QuestLearner::QuestLearner()
 	this->nextLessonAnswers;
 	this->nextLessonTitle;
 	this->nextLessonPrompts;
+	this->totalExperience = 0;
 }
+
 
 void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel, const char* lessonFilePath)
 {
@@ -82,4 +94,32 @@ int QuestLearner :: startNextLesson() {
 
 	return expPoints;
 
+}
+
+int QuestLearner :: getExp() {
+	return this->totalExperience;
+}
+
+void QuestLearner :: setExp(int expGained) {
+	this->totalExperience += expGained;
+}
+
+bool saveProgress(std::string gamefilePath) {
+	//auto ptrGameFilePath = gamefilePath.c_str();
+	////create a document:
+	//tinyxml2::XMLDocument xmlDoc;
+	////add an element (int)
+	//tinyxml2::XMLNode* pRoot = xmlDoc.NewElement("GameFile");
+	//xmlDoc.InsertFirstChild(pRoot);
+	//tinyxml2::XMLElement* pPlayerElement = xmlDoc.NewElement("PlayerOne");
+	//pPlayerElement->SetAttribute("PlayerName", playerName.c_str());
+	//pPlayerElement->SetAttribute("LearningClass", learningClass.c_str());
+	//pPlayerElement->SetAttribute("CharacterClass", characterClass.c_str());
+
+	//pRoot->InsertEndChild(pPlayerElement);
+
+	//tinyxml2::XMLError eResult = xmlDoc.SaveFile(ptrGameFilePath);
+	//std::filesystem::path gameFilePath{ strGameFilePath };
+	//return gameFilePath;
+	return true;
 }

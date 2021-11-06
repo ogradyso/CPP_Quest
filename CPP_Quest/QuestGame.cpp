@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream>
 #include <regex>
+#include "tinyxml2.h"
 
 std::string inputVal(std::string strPatternOfOptions, std::string promptToUser, std::string followUpPrompt) {
 	std::string userInput;
@@ -31,10 +32,12 @@ void QuestGame :: StartGame(void) {
 	while (continueGame) {
 		const char* lessonRoot = "IntroLessons";
 		const char* lessonLevel = "Lesson1";
-		std::filesystem::path gameFilepath = std::filesystem::current_path().string() + "\\QuestFiles\\IntroLessons.xml";
-		QuestLearner mainCharacter = QuestLearner();
-		mainCharacter.getLessonInfo(lessonRoot, lessonLevel, gameFilepath.string().c_str());
+		std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "\\QuestFiles\\IntroLessons.xml";
+		int savedExperience = this->loadSavedGame();
+		QuestLearner mainCharacter = QuestLearner(savedExperience);
+		mainCharacter.getLessonInfo(lessonRoot, lessonLevel, lessonFilepath.string().c_str());
 		StartLesson(mainCharacter);
+		std::cout << "You have " << savedExperience << " experience points!" << '\n';
 		std::string continueChoice = inputVal("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
 
 		switch (*continueChoice.begin()) {
@@ -51,20 +54,35 @@ void QuestGame :: StartGame(void) {
 		default:
 			std::cout << "Something went wrong." << '\n';
 		}
-
 	}
-	
-
 }
 
 void QuestGame::StartLesson(QuestLearner learningCharacter) {
 	std::cout << "Starting the next lesson..." << '\n';
 	int expGained = learningCharacter.startNextLesson();
 	std::cout << "You gained " << expGained << " experience points!" << '\n';
+	
 }
 
 void QuestGame::SaveGame() {
 	std::cout << "Saving your progress..." << '\n';
 }
 
+int QuestGame::loadSavedGame() {
+	tinyxml2::XMLDocument xmlDoc;
+	auto ptrGameFilePath = this->gameFilePath;
+	tinyxml2::XMLError eResult = xmlDoc.LoadFile(ptrGameFilePath.string().c_str());
+
+	const char* gameFileRoot = "GameFile";
+	const char* playerNode = "PlayerOne";
+	tinyxml2::XMLNode* PlayersRoot = xmlDoc.FirstChildElement(gameFileRoot);
+
+	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement();
+	const char* savedExperience = playerData->Attribute("CurrentExp");
+	return std::stoi(savedExperience);
+}
+
+std::filesystem::path QuestGame::getGameFilePath() {
+	return this->gameFilePath;
+}
 

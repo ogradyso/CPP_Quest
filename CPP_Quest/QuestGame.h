@@ -18,6 +18,8 @@ public:
 	void StartGame(void);
 	void StartLesson(QuestLearner);
 	void SaveGame();
+	int loadSavedGame();
+	std::filesystem::path getGameFilePath();
 };
 
 #endif
