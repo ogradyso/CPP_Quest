@@ -104,7 +104,7 @@ void StartGame(void) {
 		std::cout << "It looks like a game file with this name already exists.\n";
 		std::string userPromptLoadGame = inputValidation("[Y|N]", "Would you like to load the game : " + playerName + " ? \n", "You have to choose either Y for Yes or N for No.");
 		if (*userPromptLoadGame.begin() = 'Y') {
-			std::string strGameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + playerName + ".txt";
+			std::string strGameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + playerName + ".xml";
 			std::filesystem::path gameFilePath{ strGameFilePath };
 			QuestGame NowPlaying{ gameFilePath };
 			NowPlaying.StartGame();

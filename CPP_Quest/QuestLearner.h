@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+
 #ifndef QuestLearner_H
 #define QuestLearner_H
 
@@ -21,7 +22,7 @@ public:
 	int startNextLesson();
 	int getExp();
 	void setExp(int);
-	bool saveProgress();
+	bool saveProgress(std::string);
 };
 
 #endif

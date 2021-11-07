@@ -6,6 +6,7 @@
 #include <array>
 #include <filesystem>
 #include <fstream>
+#include <string>
 
 
 QuestLearner::QuestLearner(int savedExperience)
@@ -65,7 +66,7 @@ void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel
 
 };
 
-int QuestLearner :: startNextLesson() {
+int QuestLearner::startNextLesson() {
 	int expPoints = 0;
 	std::string lessonAnswerFile = std::filesystem::current_path().string() + "\\LessonAnswers\\LessonAnswer.cpp";;
 	std::string answer;
@@ -96,30 +97,28 @@ int QuestLearner :: startNextLesson() {
 
 }
 
-int QuestLearner :: getExp() {
+int QuestLearner::getExp() {
 	return this->totalExperience;
 }
 
-void QuestLearner :: setExp(int expGained) {
+void QuestLearner::setExp(int expGained) {
 	this->totalExperience += expGained;
 }
 
-bool saveProgress(std::string gamefilePath) {
-	//auto ptrGameFilePath = gamefilePath.c_str();
-	////create a document:
-	//tinyxml2::XMLDocument xmlDoc;
-	////add an element (int)
-	//tinyxml2::XMLNode* pRoot = xmlDoc.NewElement("GameFile");
-	//xmlDoc.InsertFirstChild(pRoot);
-	//tinyxml2::XMLElement* pPlayerElement = xmlDoc.NewElement("PlayerOne");
-	//pPlayerElement->SetAttribute("PlayerName", playerName.c_str());
-	//pPlayerElement->SetAttribute("LearningClass", learningClass.c_str());
-	//pPlayerElement->SetAttribute("CharacterClass", characterClass.c_str());
+bool QuestLearner :: saveProgress(std::string gamefilePath) {
+	tinyxml2::XMLDocument xmlDoc;
+	tinyxml2::XMLError eResult = xmlDoc.LoadFile(gamefilePath.c_str());
 
-	//pRoot->InsertEndChild(pPlayerElement);
+	const char* gameFileRoot = "GameFile";
+	const char* playerNode = "PlayerOne";
+	tinyxml2::XMLNode* PlayersRoot = xmlDoc.FirstChildElement(gameFileRoot);
 
-	//tinyxml2::XMLError eResult = xmlDoc.SaveFile(ptrGameFilePath);
-	//std::filesystem::path gameFilePath{ strGameFilePath };
-	//return gameFilePath;
+	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
+	
+	int experienceToSave = this->getExp();
+	playerData->SetAttribute("CurrentExp", std::to_string(experienceToSave).c_str());
+	PlayersRoot->InsertEndChild(playerData);
+	xmlDoc.SaveFile(gamefilePath.c_str());
+
 	return true;
 }

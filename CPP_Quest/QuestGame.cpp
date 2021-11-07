@@ -32,20 +32,22 @@ void QuestGame :: StartGame(void) {
 	while (continueGame) {
 		const char* lessonRoot = "IntroLessons";
 		const char* lessonLevel = "Lesson1";
+		int expGain;
 		std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "\\QuestFiles\\IntroLessons.xml";
 		int savedExperience = this->loadSavedGame();
 		QuestLearner mainCharacter = QuestLearner(savedExperience);
 		mainCharacter.getLessonInfo(lessonRoot, lessonLevel, lessonFilepath.string().c_str());
-		StartLesson(mainCharacter);
+		expGain = StartLesson(mainCharacter);
+		mainCharacter.setExp(expGain);
 		std::cout << "You have " << savedExperience << " experience points!" << '\n';
 		std::string continueChoice = inputVal("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
 
 		switch (*continueChoice.begin()) {
 		case 'C':
-			StartLesson(mainCharacter);
-			break;
+			expGain = StartLesson(mainCharacter);
+			[[fallthrough]];
 		case 'S':
-			SaveGame();
+			this->SaveGame(mainCharacter);
 			break;
 		case 'E':
 			std::cout << "Its probably for the best, come back when you are ready. We'll be here!" << '\n';
@@ -57,15 +59,17 @@ void QuestGame :: StartGame(void) {
 	}
 }
 
-void QuestGame::StartLesson(QuestLearner learningCharacter) {
+int QuestGame::StartLesson(QuestLearner learningCharacter) {
 	std::cout << "Starting the next lesson..." << '\n';
 	int expGained = learningCharacter.startNextLesson();
 	std::cout << "You gained " << expGained << " experience points!" << '\n';
-	
+	return expGained;
 }
 
-void QuestGame::SaveGame() {
+void QuestGame::SaveGame(QuestLearner learningCharacter) {
 	std::cout << "Saving your progress..." << '\n';
+	bool saveComplete = learningCharacter.saveProgress(this->gameFilePath.string().c_str());
+
 }
 
 int QuestGame::loadSavedGame() {
@@ -77,7 +81,7 @@ int QuestGame::loadSavedGame() {
 	const char* playerNode = "PlayerOne";
 	tinyxml2::XMLNode* PlayersRoot = xmlDoc.FirstChildElement(gameFileRoot);
 
-	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement();
+	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
 	const char* savedExperience = playerData->Attribute("CurrentExp");
 	return std::stoi(savedExperience);
 }

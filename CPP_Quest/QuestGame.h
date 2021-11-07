@@ -16,8 +16,8 @@ private:
 public: 
 	QuestGame(std::filesystem::path gameFilePath);
 	void StartGame(void);
-	void StartLesson(QuestLearner);
-	void SaveGame();
+	int StartLesson(QuestLearner);
+	void SaveGame(QuestLearner);
 	int loadSavedGame();
 	std::filesystem::path getGameFilePath();
 };
