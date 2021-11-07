@@ -33,7 +33,7 @@ void QuestGame :: StartGame(void) {
 		const char* lessonRoot = "IntroLessons";
 		const char* lessonLevel = "Lesson1";
 		int expGain;
-		std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "\\QuestFiles\\IntroLessons.xml";
+		std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/IntroLessons.xml";
 		int savedExperience = this->loadSavedGame();
 		QuestLearner mainCharacter = QuestLearner(savedExperience);
 		mainCharacter.getLessonInfo(lessonRoot, lessonLevel, lessonFilepath.string().c_str());

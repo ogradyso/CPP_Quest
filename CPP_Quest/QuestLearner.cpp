@@ -68,7 +68,7 @@ void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel
 
 int QuestLearner::startNextLesson() {
 	int expPoints = 0;
-	std::string lessonAnswerFile = std::filesystem::current_path().string() + "\\LessonAnswers\\LessonAnswer.cpp";;
+	std::string lessonAnswerFile = std::filesystem::current_path().string() + "/LessonAnswers/LessonAnswer.cpp";;
 	std::string answer;
 	std::string prompt;
 	std::string correctAnswer;

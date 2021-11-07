@@ -8,11 +8,11 @@
 #include <filesystem>
 #include <fstream>
 
-#define CATCH_CONFIG_MAIN
-#include "catch.h"
+//#define CATCH_CONFIG_MAIN
+//#include "catch.h"
 
 bool checkForGameFile(std::string fileName) {
-	std::string gameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + fileName + ".xml";
+	std::string gameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + fileName + ".xml";
 	std::filesystem::path testPath{gameFilePath};
 	if (exists(testPath)) {
 		return true;
@@ -40,7 +40,7 @@ std::string inputValidation(std::string strPatternOfOptions, std::string promptT
 
 std::filesystem::path CreateNewGameFile(std::string playerName, std::string learningClass, std::string characterClass) {
 	const char* initExp = "0";
-	std::string strGameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + playerName + ".xml";
+	std::string strGameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + playerName + ".xml";
 	auto ptrGameFilePath = strGameFilePath.c_str();
 	//create a document:
 	tinyxml2::XMLDocument xmlDoc;
@@ -104,7 +104,7 @@ void StartGame(void) {
 		std::cout << "It looks like a game file with this name already exists.\n";
 		std::string userPromptLoadGame = inputValidation("[Y|N]", "Would you like to load the game : " + playerName + " ? \n", "You have to choose either Y for Yes or N for No.");
 		if (*userPromptLoadGame.begin() = 'Y') {
-			std::string strGameFilePath = std::filesystem::current_path().string() + "\\GameFiles\\" + playerName + ".xml";
+			std::string strGameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + playerName + ".xml";
 			std::filesystem::path gameFilePath{ strGameFilePath };
 			QuestGame NowPlaying{ gameFilePath };
 			NowPlaying.StartGame();
@@ -152,55 +152,55 @@ int main() {
 
 }
 
-TEST_CASE("CreateNewGameFile ") {
-	SECTION("returns a file path for an xml document with the name of the player in the game files location") {
-		std::string correctFilePathString = std::filesystem::current_path().string() + "\\GameFiles\\test1.xml";
-		std::filesystem::path returnedFilePath = CreateNewGameFile("test1", "test1", "test1");
-		REQUIRE(returnedFilePath.string() == correctFilePathString);
-		if (returnedFilePath.string() == correctFilePathString) {
-			remove(correctFilePathString.c_str());
-		}
-		else {
-			std::cout << "Did not remove";
-		}
-	}
-	SECTION("contains correct initialized player one data") {
-		std::string correctFilePathString = std::filesystem::current_path().string() + "\\GameFiles\\test2.xml";
-		std::filesystem::path returnedFilePath = CreateNewGameFile("test2", "test2", "test2");
-		tinyxml2::XMLDocument xmlDoc;
-		tinyxml2::XMLError eResult = xmlDoc.LoadFile(correctFilePathString.c_str());
-		tinyxml2::XMLNode* GameFileRoot = xmlDoc.FirstChild();
-		REQUIRE(GameFileRoot != nullptr);
-		if (GameFileRoot != nullptr) {
-			tinyxml2::XMLElement* GameFileElement = GameFileRoot->FirstChildElement("PlayerOne");
-			REQUIRE(GameFileElement != nullptr);
-			const char* playerNameAttributeText = nullptr;
-			const char* learnerClassAttributeText = nullptr;
-			const char* characterClassAttributeText = nullptr;
-
-			playerNameAttributeText = GameFileElement->Attribute("PlayerName");
-			learnerClassAttributeText = GameFileElement->Attribute("LearningClass");
-			characterClassAttributeText = GameFileElement->Attribute("CharacterClass");
-
-			REQUIRE(playerNameAttributeText != nullptr);
-
-			REQUIRE(learnerClassAttributeText != nullptr);
-			REQUIRE(characterClassAttributeText != nullptr);
-
-			if (playerNameAttributeText != nullptr && learnerClassAttributeText != nullptr && characterClassAttributeText != nullptr) {
-				std::string strOutPlayerName = playerNameAttributeText;
-				REQUIRE(strOutPlayerName == "test2");
-				std::string strOutLearnerClass = learnerClassAttributeText;
-				REQUIRE(strOutLearnerClass == "test2");
-				std::string strOutCharacterClass = characterClassAttributeText;
-				REQUIRE(strOutCharacterClass == "test2");
-				if (strOutCharacterClass == "test2") {
-					remove(correctFilePathString.c_str());
-				}
-				else {
-					std::cout << "Did not remove";
-				}
-			}
-		}
-	}
-}
+//TEST_CASE("CreateNewGameFile ") {
+//	SECTION("returns a file path for an xml document with the name of the player in the game files location") {
+//		std::string correctFilePathString = std::filesystem::current_path().string() + "/GameFiles/test1.xml";
+//		std::filesystem::path returnedFilePath = CreateNewGameFile("test1", "test1", "test1");
+//		REQUIRE(returnedFilePath.string() == correctFilePathString);
+//		if (returnedFilePath.string() == correctFilePathString) {
+//			remove(correctFilePathString.c_str());
+//		}
+//		else {
+//			std::cout << "Did not remove";
+//		}
+//	}
+//	SECTION("contains correct initialized player one data") {
+//		std::string correctFilePathString = std::filesystem::current_path().string() + "/GameFiles/test2.xml";
+//		std::filesystem::path returnedFilePath = CreateNewGameFile("test2", "test2", "test2");
+//		tinyxml2::XMLDocument xmlDoc;
+//		tinyxml2::XMLError eResult = xmlDoc.LoadFile(correctFilePathString.c_str());
+//		tinyxml2::XMLNode* GameFileRoot = xmlDoc.FirstChild();
+//		REQUIRE(GameFileRoot != nullptr);
+//		if (GameFileRoot != nullptr) {
+//			tinyxml2::XMLElement* GameFileElement = GameFileRoot->FirstChildElement("PlayerOne");
+//			REQUIRE(GameFileElement != nullptr);
+//			const char* playerNameAttributeText = nullptr;
+//			const char* learnerClassAttributeText = nullptr;
+//			const char* characterClassAttributeText = nullptr;
+//
+//			playerNameAttributeText = GameFileElement->Attribute("PlayerName");
+//			learnerClassAttributeText = GameFileElement->Attribute("LearningClass");
+//			characterClassAttributeText = GameFileElement->Attribute("CharacterClass");
+//
+//			REQUIRE(playerNameAttributeText != nullptr);
+//
+//			REQUIRE(learnerClassAttributeText != nullptr);
+//			REQUIRE(characterClassAttributeText != nullptr);
+//
+//			if (playerNameAttributeText != nullptr && learnerClassAttributeText != nullptr && characterClassAttributeText != nullptr) {
+//				std::string strOutPlayerName = playerNameAttributeText;
+//				REQUIRE(strOutPlayerName == "test2");
+//				std::string strOutLearnerClass = learnerClassAttributeText;
+//				REQUIRE(strOutLearnerClass == "test2");
+//				std::string strOutCharacterClass = characterClassAttributeText;
+//				REQUIRE(strOutCharacterClass == "test2");
+//				if (strOutCharacterClass == "test2") {
+//					remove(correctFilePathString.c_str());
+//				}
+//				else {
+//					std::cout << "Did not remove";
+//				}
+//			}
+//		}
+//	}
+//}
