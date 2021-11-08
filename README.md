@@ -1,6 +1,6 @@
 # CPP Quest
 
-This is my first attempt at making an RPG-style Console game for people interested in learning C++. I decided to make this game because LeetCode is cool and semi-gamified but I like RPGs. I have a lot to do to make this game useful to anyone but myself. 
+This is a RPG-style console game for people interested in learning C++. I decided to make this game because LeetCode is cool and semi-gamified but I like RPGs. I have a lot to do to make this game useful to anyone but myself. 
 
 ## Gameplay
 For now, this will only be a console app consisting of interview-style read/write input and output operations
