@@ -8,14 +8,13 @@ For now, this will only be a console app consisting of interview-style read/writ
 ## Graphics
 Eventually I would like to include a graphics engine but I want to work out the game play and learning system first.
 
-## Portability/Compatabilty
-The current version was developed on a using C++17 Windows machine with visual studio. As I learn more I will use conditional compilation to ensure portability to Mac and Linux.
-
-### Portability issues:
+## Development environment and cross-platform issues
+The current version was developed on a Windows 10 machine with visual studio using C++17 and has been tested on Ubuntu 20.
 
 ## TODO:
 ### Game Development:
--Build system for lesson management
+-use CMAKE build system
+-create system for lesson management
 -Generate more lesson XMLs based on the sequence of Stroustrup's Tour of C++
 -Create sidequest system
 -Create storyline
