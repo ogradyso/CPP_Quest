@@ -2,14 +2,12 @@
 #include <iostream>
 #include "QuestGame.h"
 #include "QuestCharacter.h"
+#include "GameLoader.h"
 #include "tinyxml2.h"
 #include "tinyxml2.cpp"
 #include <regex>
 #include <filesystem>
 #include <fstream>
-
-//#define CATCH_CONFIG_MAIN
-//#include "catch.h"
 
 bool checkForGameFile(std::string fileName) {
 	std::string gameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + fileName + ".xml";
