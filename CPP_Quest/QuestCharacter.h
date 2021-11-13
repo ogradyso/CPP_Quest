@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 #ifndef QuestCharacter_H
 #define QuestCharacter_H
