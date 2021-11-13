@@ -20,11 +20,15 @@ std::vector<QuestCharacter> GameLoader::LoadGameFile() {
 	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
 	const char* savedExperience = playerData->Attribute("CurrentExp");
 
+	QuestLearner mainCharacter = QuestLearner(savedExperience);
+
+
 
 	return std::stoi(savedExperience);
 };
 
 void GameLoader::SaveGameFile() {
+
 
 };
 
