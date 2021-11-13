@@ -54,7 +54,7 @@ void StartGame(QuestGame currentGame) {
 
 	if (!checkForGameFile(playerName)) {
 		std::filesystem::path gameFilePath = currentGame.fileLoader.CreateNewGameFile(playerName, learningClass, playerClass);
-		currentGame.setGameFilePath(gameFilePath);
+		currentGame.fileLoader.setGameFilePath(gameFilePath);
 		currentGame.StartGame();
 	}
 	else {
@@ -63,7 +63,7 @@ void StartGame(QuestGame currentGame) {
 		if (*userPromptLoadGame.begin() = 'Y') {
 			std::string strGameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + playerName + ".xml";
 			std::filesystem::path gameFilePath{ strGameFilePath };
-			currentGame.setGameFilePath(gameFilePath);
+			currentGame.fileLoader.setGameFilePath(gameFilePath);
 			currentGame.StartGame();
 		}
 		else {
@@ -71,11 +71,6 @@ void StartGame(QuestGame currentGame) {
 		}
 	}
 	std::cout << '\n';
-}
-
-void LoadGame(std::string gameFilePath) {
-	QuestGame CurrentGame = QuestGame();
-
 }
 
 int main() {

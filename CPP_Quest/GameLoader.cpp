@@ -14,6 +14,10 @@ GameLoader::GameLoader(std::filesystem::path gameFilePath) : gameFilePath(gameFi
 
 };
 
+void GameLoader::setGameFilePath(std::filesystem::path newGameFilePath) {
+	this->gameFilePath = newGameFilePath;
+}
+
 QuestCharacter_H::QuestCharacter GameLoader::LoadGameFile() {
 	tinyxml2::XMLDocument xmlDoc;
 	std::filesystem::path ptrGameFilePath = this->gameFilePath;

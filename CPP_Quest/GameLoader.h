@@ -15,6 +15,7 @@ public:
 	GameLoader(std::filesystem::path currentGameFilePath);
 	std::filesystem::path CreateNewGameFile(std::string, std::string, std::string);
 	QuestCharacter_H::QuestCharacter LoadGameFile();
+	void setGameFilePath(std::filesystem::path);
 	//SaveGameFile();
 	///LoadNextLesson();
 };
