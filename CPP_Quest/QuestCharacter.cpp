@@ -2,31 +2,13 @@
 #include "tinyxml2.h"
 #include <string>
 #include <iostream>
-#include <boost/foreach.hpp>
-#include <boost/range/combine.hpp>
+//#include <boost/foreach.hpp>
+//#include <boost/range/combine.hpp>
 #include <array>
 #include <filesystem>
 #include <fstream>
 
-//default constructor:
-QuestCharacter::QuestCharacter()
-{}
-
-QuestCharacter :: QuestCharacter(std::string characterName, std::string characterType)
-	: characterName(characterName), characterType(characterType)
-{}
-
-//default constructor:
-MainCharacter::MainCharacter()
-{}
-
-MainCharacter::MainCharacter(std::string characterName, std::string characterType, int savedExperience)
-	: QuestLearner(savedExperience)
-{
-	
-}
-
-QuestLearner::QuestLearner(int savedExperience)
+QuestCharacter::QuestCharacter(int savedExperience)
 {
 	this->learnerLevel = 0;
 	this->nextLesson = 0;
@@ -36,7 +18,7 @@ QuestLearner::QuestLearner(int savedExperience)
 	this->totalExperience = savedExperience;
 }
 
-QuestLearner::QuestLearner()
+QuestCharacter::QuestCharacter()
 {
 	this->learnerLevel = 0;
 	this->nextLesson = 0;
@@ -47,7 +29,7 @@ QuestLearner::QuestLearner()
 }
 
 
-void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel, const char* lessonFilePath)
+void QuestCharacter::getLessonInfo(const char* lessonRoot, const char* lessonLevel, const char* lessonFilePath)
 {
 	tinyxml2::XMLDocument xmlDoc;
 
@@ -83,7 +65,7 @@ void QuestLearner::getLessonInfo(const char* lessonRoot, const char* lessonLevel
 
 };
 
-int QuestLearner::startNextLesson() {
+int QuestCharacter::startNextLesson() {
 	int expPoints = 0;
 	std::string lessonAnswerFile = std::filesystem::current_path().string() + "/LessonAnswers/LessonAnswer.cpp";;
 	std::string answer;
@@ -95,7 +77,7 @@ int QuestLearner::startNextLesson() {
 	std::filesystem::remove(lessonAnswerFile);
 	output_fstream.open(lessonAnswerFile, std::ios_base::out);
 
-	BOOST_FOREACH(boost::tie(prompt, correctAnswer), boost::combine(this->nextLessonPrompts, this->nextLessonAnswers))
+	/*BOOST_FOREACH(boost::tie(prompt, correctAnswer), boost::combine(this->nextLessonPrompts, this->nextLessonAnswers))
 	{
 		std::cout << prompt << '\n';
 		std::string response;
@@ -107,22 +89,22 @@ int QuestLearner::startNextLesson() {
 			output_fstream << response << '\n';
 		}
 
-	}
+	}*/
 	output_fstream.close();
 
 	return expPoints;
 
 }
 
-int QuestLearner::getExp() {
+int QuestCharacter::getExp() {
 	return this->totalExperience;
 }
 
-void QuestLearner::setExp(int expGained) {
+void QuestCharacter::setExp(int expGained) {
 	this->totalExperience += expGained;
 }
 
-bool QuestLearner::saveProgress(std::string gamefilePath) {
+bool QuestCharacter::saveProgress(std::string gamefilePath) {
 	tinyxml2::XMLDocument xmlDoc;
 	tinyxml2::XMLError eResult = xmlDoc.LoadFile(gamefilePath.c_str());
 

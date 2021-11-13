@@ -2,35 +2,37 @@
 #include <string>
 #include <iostream>
 #include "QuestGame.h"
+#include "GameLoader.h"
 #include <filesystem>
 #include <fstream>
 #include <regex>
-#include "tinyxml2.h"
 
 QuestGame::QuestGame()
-{}
+{};
 
-void QuestGame :: StartGame(void) {
+QuestGame::QuestGame(GameLoader_H::GameLoader questLoader) : fileLoader(questLoader) {
+
+};
+
+void QuestGame::StartGame() {
 	bool continueGame = true;
 	while (continueGame) {
 		const char* lessonRoot = "IntroLessons";
 		const char* lessonLevel = "Lesson1";
 		int expGain;
 		std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/IntroLessons.xml";
-		int savedExperience = this->loadSavedGame();
-		QuestLearner mainCharacter = QuestLearner(savedExperience);
-		mainCharacter.getLessonInfo(lessonRoot, lessonLevel, lessonFilepath.string().c_str());
-		expGain = StartLesson(mainCharacter);
-		mainCharacter.setExp(expGain);
-		std::cout << "You have " << savedExperience << " experience points!" << '\n';
+		this->player = this->fileLoader.LoadGameFile();
+		this->player.getLessonInfo(lessonRoot, lessonLevel, lessonFilepath.string().c_str());
+		expGain = this->StartLesson();
+		this->player.setExp(expGain);
 		std::string continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
 
 		switch (*continueChoice.begin()) {
 		case 'C':
-			expGain = StartLesson(mainCharacter);
+			expGain = this->StartLesson();
 			[[fallthrough]];
 		case 'S':
-			this->SaveGame(mainCharacter);
+			this->SaveGame();
 			break;
 		case 'E':
 			std::cout << "Its probably for the best, come back when you are ready. We'll be here!" << '\n';
@@ -40,42 +42,28 @@ void QuestGame :: StartGame(void) {
 			std::cout << "Something went wrong." << '\n';
 		}
 	}
-}
+};
 
-int QuestGame::StartLesson(QuestLearner learningCharacter) {
+int QuestGame::StartLesson() {
 	std::cout << "Starting the next lesson..." << '\n';
-	int expGained = learningCharacter.startNextLesson();
+	int expGained = this->player.startNextLesson();
 	std::cout << "You gained " << expGained << " experience points!" << '\n';
 	return expGained;
-}
+};
 
-void QuestGame::SaveGame(QuestLearner learningCharacter) {
+void QuestGame::SaveGame() {
 	std::cout << "Saving your progress..." << '\n';
-	bool saveComplete = learningCharacter.saveProgress(this->gameFilePath.string().c_str());
+	bool saveComplete = this->player.saveProgress(this->gameFilePath.string().c_str());
 
-}
-
-int QuestGame::loadSavedGame() {
-	tinyxml2::XMLDocument xmlDoc;
-	auto ptrGameFilePath = this->gameFilePath;
-	tinyxml2::XMLError eResult = xmlDoc.LoadFile(ptrGameFilePath.string().c_str());
-
-	const char* gameFileRoot = "GameFile";
-	const char* playerNode = "PlayerOne";
-	tinyxml2::XMLNode* PlayersRoot = xmlDoc.FirstChildElement(gameFileRoot);
-
-	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
-	const char* savedExperience = playerData->Attribute("CurrentExp");
-	return std::stoi(savedExperience);
-}
+};
 
 void QuestGame::setGameFilePath(std::filesystem::path gameFilePathInput) {
 	this->gameFilePath = gameFilePathInput;
-}
+};
 
 std::filesystem::path QuestGame::getGameFilePath() {
 	return this->gameFilePath;
-}
+};
 
 std::string QuestGame::inputValidation(std::string strPatternOfOptions, std::string promptToUser, std::string followUpPrompt) {
 	std::string userInput;
@@ -91,5 +79,5 @@ std::string QuestGame::inputValidation(std::string strPatternOfOptions, std::str
 			std::cin >> userInput;
 		}
 	}
-}
+};
 

@@ -14,6 +14,9 @@ The current version was developed on a Windows 10 machine with visual studio usi
 ## TODO:
 ### Game Development:
 -use CMAKE build system
+-add conditional to CMAKE for Unix build
+-improve MainCharacter data loading component
+-create test system
 -create system for lesson management
 -Generate more lesson XMLs based on the sequence of Stroustrup's Tour of C++
 -Create sidequest system

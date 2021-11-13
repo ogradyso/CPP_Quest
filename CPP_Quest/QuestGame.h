@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "QuestCharacter.h"
+#include "GameLoader.h"
 #include <filesystem>
 
 
@@ -12,16 +13,18 @@ class QuestGame {
 	
 private:
 	std::filesystem::path gameFilePath;
-	MainCharacter player;
+	QuestCharacter player;
 public: 
 	QuestGame();
+	QuestGame(GameLoader);
+	GameLoader_H::GameLoader fileLoader;
 	void StartGame(void);
-	int StartLesson(QuestLearner);
-	void SaveGame(QuestLearner);
-	int loadSavedGame();
+	int StartLesson();
+	void SaveGame();
+	void setGameFilePath(std::filesystem::path);
+	//int loadSavedGame();
 	std::filesystem::path getGameFilePath();
 	std::string inputValidation(std::string, std::string, std::string);
-	void setGameFilePath(std::filesystem::path gameFilePath);
 };
 
 #endif

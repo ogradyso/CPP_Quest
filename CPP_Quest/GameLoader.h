@@ -1,16 +1,21 @@
 #pragma once
+#include <filesystem>
+#include "QuestCharacter.h"
 
-#ifndef QuestGame_H
-#define QuestGame_H
+
+#ifndef GameLoader_H
+#define GameLoader_H
 
 class GameLoader {
 
 private:
 	std::filesystem::path gameFilePath;
 public:
+	GameLoader();
 	GameLoader(std::filesystem::path currentGameFilePath);
-	std::vector<QuestCharacter> LoadGameFile();
-	SaveGameFile();
+	std::filesystem::path CreateNewGameFile(std::string, std::string, std::string);
+	QuestCharacter_H::QuestCharacter LoadGameFile();
+	//SaveGameFile();
 	///LoadNextLesson();
 };
 

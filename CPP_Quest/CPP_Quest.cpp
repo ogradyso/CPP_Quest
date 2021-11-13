@@ -3,8 +3,6 @@
 #include "QuestGame.h"
 #include "QuestCharacter.h"
 #include "GameLoader.h"
-#include "tinyxml2.h"
-#include "tinyxml2.cpp"
 #include <regex>
 #include <filesystem>
 #include <fstream>
@@ -18,29 +16,6 @@ bool checkForGameFile(std::string fileName) {
 	else {
 		return false;
 	}
-}
-
-std::filesystem::path CreateNewGameFile(std::string playerName, std::string learningClass, std::string characterClass) {
-	const char* initExp = "0";
-	std::string strGameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + playerName + ".xml";
-	auto ptrGameFilePath = strGameFilePath.c_str();
-	//create a document:
-	tinyxml2::XMLDocument xmlDoc;
-	//add an element (int)
-	tinyxml2::XMLNode* pRoot = xmlDoc.NewElement("GameFile");
-	xmlDoc.InsertFirstChild(pRoot);
-	tinyxml2::XMLElement* pPlayerElement = xmlDoc.NewElement("PlayerOne");
-	pPlayerElement->SetAttribute("PlayerName", playerName.c_str());
-	pPlayerElement->SetAttribute("LearningClass", learningClass.c_str());
-	pPlayerElement->SetAttribute("CharacterClass", characterClass.c_str());
-	pPlayerElement->SetAttribute("CurrentExp", initExp);
-
-	pRoot->InsertEndChild(pPlayerElement);
-
-	tinyxml2::XMLError eResult = xmlDoc.SaveFile(ptrGameFilePath);
-	std::filesystem::path gameFilePath{ strGameFilePath };
-	return gameFilePath;
-
 }
 
 void StartGame(QuestGame currentGame) {
@@ -78,7 +53,7 @@ void StartGame(QuestGame currentGame) {
 	}
 
 	if (!checkForGameFile(playerName)) {
-		std::filesystem::path gameFilePath = CreateNewGameFile(playerName, learningClass, playerClass);
+		std::filesystem::path gameFilePath = currentGame.fileLoader.CreateNewGameFile(playerName, learningClass, playerClass);
 		currentGame.setGameFilePath(gameFilePath);
 		currentGame.StartGame();
 	}
@@ -104,7 +79,8 @@ void LoadGame(std::string gameFilePath) {
 }
 
 int main() {
-	QuestGame currentGame = QuestGame();
+	GameLoader questLoader = GameLoader();
+	QuestGame currentGame = QuestGame(questLoader);
 	std::cout << "  QQ     UU  UU  EEEEEE    SS    TTTTTT  " << '\n';
 	std::cout << "QQ  QQ   UU  UU  EE      SS  SS    TT    " << '\n';
 	std::cout << "QQ  QQ   UU  UU  EEEEEE   SS       TT    " << '\n';
