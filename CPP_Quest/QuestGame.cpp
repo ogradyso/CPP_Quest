@@ -7,24 +7,7 @@
 #include <regex>
 #include "tinyxml2.h"
 
-std::string inputVal(std::string strPatternOfOptions, std::string promptToUser, std::string followUpPrompt) {
-	std::string userInput;
-	std::regex patternOfOptions{ (strPatternOfOptions) };
-	std::cout << promptToUser;
-	std::cin >> userInput;
-	while (true) {
-		if (std::regex_match(userInput, patternOfOptions)) {
-			return userInput;
-		}
-		else {
-			std::cout << followUpPrompt;
-			std::cin >> userInput;
-		}
-	}
-}
-
-QuestGame::QuestGame(std::filesystem::path gameFilePath)
-	: gameFilePath(gameFilePath)
+QuestGame::QuestGame()
 {}
 
 void QuestGame :: StartGame(void) {
@@ -40,7 +23,7 @@ void QuestGame :: StartGame(void) {
 		expGain = StartLesson(mainCharacter);
 		mainCharacter.setExp(expGain);
 		std::cout << "You have " << savedExperience << " experience points!" << '\n';
-		std::string continueChoice = inputVal("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
+		std::string continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
 
 		switch (*continueChoice.begin()) {
 		case 'C':
@@ -86,7 +69,27 @@ int QuestGame::loadSavedGame() {
 	return std::stoi(savedExperience);
 }
 
+void QuestGame::setGameFilePath(std::filesystem::path gameFilePathInput) {
+	this->gameFilePath = gameFilePathInput;
+}
+
 std::filesystem::path QuestGame::getGameFilePath() {
 	return this->gameFilePath;
+}
+
+std::string QuestGame::inputValidation(std::string strPatternOfOptions, std::string promptToUser, std::string followUpPrompt) {
+	std::string userInput;
+	std::regex patternOfOptions{ (strPatternOfOptions) };
+	std::cout << promptToUser;
+	std::cin >> userInput;
+	while (true) {
+		if (std::regex_match(userInput, patternOfOptions)) {
+			return userInput;
+		}
+		else {
+			std::cout << followUpPrompt;
+			std::cin >> userInput;
+		}
+	}
 }
 

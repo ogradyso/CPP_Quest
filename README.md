@@ -19,9 +19,3 @@ The current version was developed on a Windows 10 machine with visual studio usi
 -Create sidequest system
 -Create storyline
 -Add graphics
-
-### Code improvements:
--move abstract helperfunctions for prompt system to their own source file
--improve xml parsing with abstract functions and place into separate source file
-
-

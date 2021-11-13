@@ -20,22 +20,6 @@ bool checkForGameFile(std::string fileName) {
 	}
 }
 
-std::string inputValidation(std::string strPatternOfOptions, std::string promptToUser, std::string followUpPrompt) {
-	std::string userInput;
-	std::regex patternOfOptions{ (strPatternOfOptions) };
-	std::cout << promptToUser;
-	std::cin >> userInput;
-	while (true) {
-		if (std::regex_match(userInput, patternOfOptions)) {
-			return userInput;
-		}
-		else {
-			std::cout << followUpPrompt;
-			std::cin >> userInput;
-		}
-	}
-}
-
 std::filesystem::path CreateNewGameFile(std::string playerName, std::string learningClass, std::string characterClass) {
 	const char* initExp = "0";
 	std::string strGameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + playerName + ".xml";
@@ -59,12 +43,12 @@ std::filesystem::path CreateNewGameFile(std::string playerName, std::string lear
 
 }
 
-void StartGame(void) {
+void StartGame(QuestGame currentGame) {
 	std::string playerName;
 	std::cout << "What is your name?" << '\n';
 	std::cin >> playerName;
 	std::cout << '\n';
-	std::string learningClass = inputValidation("[H|A|L|N|W]", "Which learning class would you like to choose? \n(H)obbyist; (A)pplication Developer; (L)ibrary Developer; (N)etwork Specialist; (W)izard\n", "You must choose an upper case letter associated with a learning class:\n(H)obbyist; (A)pplication Developer; (L)ibrary Developer; (N)etwork Specialist; (W)izard\n");
+	std::string learningClass = currentGame.inputValidation("[H|A|L|N|W]", "Which learning class would you like to choose? \n(H)obbyist; (A)pplication Developer; (L)ibrary Developer; (N)etwork Specialist; (W)izard\n", "You must choose an upper case letter associated with a learning class:\n(H)obbyist; (A)pplication Developer; (L)ibrary Developer; (N)etwork Specialist; (W)izard\n");
 	
 	if (learningClass == "H") {
 		learningClass = "Hobbyist";
@@ -81,7 +65,7 @@ void StartGame(void) {
 	else if (learningClass == "W") {
 		learningClass = "Wizard";
 	}
-	std::string playerClass = inputValidation("[A|K|M]", "Which player class would you like to choose? \n(A)rcher; (K)night; (M)age\n", "You must choose an upper case letter associated with a player class:\n(A)rcher; (K)night; (M)age\n");	
+	std::string playerClass = currentGame.inputValidation("[A|K|M]", "Which player class would you like to choose? \n(A)rcher; (K)night; (M)age\n", "You must choose an upper case letter associated with a player class:\n(A)rcher; (K)night; (M)age\n");
 	
 	if (playerClass == "A") {
 		playerClass = "Archer";
@@ -95,17 +79,17 @@ void StartGame(void) {
 
 	if (!checkForGameFile(playerName)) {
 		std::filesystem::path gameFilePath = CreateNewGameFile(playerName, learningClass, playerClass);
-		QuestGame NowPlaying{gameFilePath};
-		NowPlaying.StartGame();
+		currentGame.setGameFilePath(gameFilePath);
+		currentGame.StartGame();
 	}
 	else {
 		std::cout << "It looks like a game file with this name already exists.\n";
-		std::string userPromptLoadGame = inputValidation("[Y|N]", "Would you like to load the game : " + playerName + " ? \n", "You have to choose either Y for Yes or N for No.");
+		std::string userPromptLoadGame = currentGame.inputValidation("[Y|N]", "Would you like to load the game : " + playerName + " ? \n", "You have to choose either Y for Yes or N for No.");
 		if (*userPromptLoadGame.begin() = 'Y') {
 			std::string strGameFilePath = std::filesystem::current_path().string() + "/GameFiles/" + playerName + ".xml";
 			std::filesystem::path gameFilePath{ strGameFilePath };
-			QuestGame NowPlaying{ gameFilePath };
-			NowPlaying.StartGame();
+			currentGame.setGameFilePath(gameFilePath);
+			currentGame.StartGame();
 		}
 		else {
 			std::cout << "Okay, exiting the game.";
@@ -115,11 +99,12 @@ void StartGame(void) {
 }
 
 void LoadGame(std::string gameFilePath) {
-	QuestGame CurrentGame = QuestGame(gameFilePath);
+	QuestGame CurrentGame = QuestGame();
 
 }
 
 int main() {
+	QuestGame currentGame = QuestGame();
 	std::cout << "  QQ     UU  UU  EEEEEE    SS    TTTTTT  " << '\n';
 	std::cout << "QQ  QQ   UU  UU  EE      SS  SS    TT    " << '\n';
 	std::cout << "QQ  QQ   UU  UU  EEEEEE   SS       TT    " << '\n';
@@ -127,7 +112,7 @@ int main() {
 	std::cout << "  QQ     UUUUUU  EE      SS  SS    TT    " << '\n';
 	std::cout << "   QQQ    UUUU   EEEEEE    SS      TT    " << '\n' << '\n';
 	std::cout << "You have chosen to embark on an epic journey!" << "\n\n";
-	std::string startChoice = inputValidation("[L|S|E]", "Would you like to (L)oad a saved Quest, (S)tart a new Quest, or (E)xit the game and return to the command line?\n", "You will need to enter either an L for Load, an S for Start or an E for Exit.\n");
+	std::string startChoice = currentGame.inputValidation("[L|S|E]", "Would you like to (L)oad a saved Quest, (S)tart a new Quest, or (E)xit the game and return to the command line?\n", "You will need to enter either an L for Load, an S for Start or an E for Exit.\n");
 
 	switch (*startChoice.begin()) {
 	case 'L':
@@ -139,7 +124,7 @@ int main() {
 		for (int i = 0; i <= 30;i++) {
 			std::cout << '\n';
 		}
-		StartGame();
+		StartGame(currentGame);
 		break;
 	case 'E':
 		std::cout << "Its probably for the best, come back when you are ready. We'll be here!" << '\n';
@@ -149,56 +134,3 @@ int main() {
 	}
 
 }
-
-//TEST_CASE("CreateNewGameFile ") {
-//	SECTION("returns a file path for an xml document with the name of the player in the game files location") {
-//		std::string correctFilePathString = std::filesystem::current_path().string() + "/GameFiles/test1.xml";
-//		std::filesystem::path returnedFilePath = CreateNewGameFile("test1", "test1", "test1");
-//		REQUIRE(returnedFilePath.string() == correctFilePathString);
-//		if (returnedFilePath.string() == correctFilePathString) {
-//			remove(correctFilePathString.c_str());
-//		}
-//		else {
-//			std::cout << "Did not remove";
-//		}
-//	}
-//	SECTION("contains correct initialized player one data") {
-//		std::string correctFilePathString = std::filesystem::current_path().string() + "/GameFiles/test2.xml";
-//		std::filesystem::path returnedFilePath = CreateNewGameFile("test2", "test2", "test2");
-//		tinyxml2::XMLDocument xmlDoc;
-//		tinyxml2::XMLError eResult = xmlDoc.LoadFile(correctFilePathString.c_str());
-//		tinyxml2::XMLNode* GameFileRoot = xmlDoc.FirstChild();
-//		REQUIRE(GameFileRoot != nullptr);
-//		if (GameFileRoot != nullptr) {
-//			tinyxml2::XMLElement* GameFileElement = GameFileRoot->FirstChildElement("PlayerOne");
-//			REQUIRE(GameFileElement != nullptr);
-//			const char* playerNameAttributeText = nullptr;
-//			const char* learnerClassAttributeText = nullptr;
-//			const char* characterClassAttributeText = nullptr;
-//
-//			playerNameAttributeText = GameFileElement->Attribute("PlayerName");
-//			learnerClassAttributeText = GameFileElement->Attribute("LearningClass");
-//			characterClassAttributeText = GameFileElement->Attribute("CharacterClass");
-//
-//			REQUIRE(playerNameAttributeText != nullptr);
-//
-//			REQUIRE(learnerClassAttributeText != nullptr);
-//			REQUIRE(characterClassAttributeText != nullptr);
-//
-//			if (playerNameAttributeText != nullptr && learnerClassAttributeText != nullptr && characterClassAttributeText != nullptr) {
-//				std::string strOutPlayerName = playerNameAttributeText;
-//				REQUIRE(strOutPlayerName == "test2");
-//				std::string strOutLearnerClass = learnerClassAttributeText;
-//				REQUIRE(strOutLearnerClass == "test2");
-//				std::string strOutCharacterClass = characterClassAttributeText;
-//				REQUIRE(strOutCharacterClass == "test2");
-//				if (strOutCharacterClass == "test2") {
-//					remove(correctFilePathString.c_str());
-//				}
-//				else {
-//					std::cout << "Did not remove";
-//				}
-//			}
-//		}
-//	}
-//}
