@@ -13,7 +13,6 @@ The current version was developed on a Windows 10 machine with visual studio usi
 
 ## TODO:
 ### Game Development:
--use CMAKE build system
 -add conditional to CMAKE for Unix build
 -improve MainCharacter data loading component
 -create test system

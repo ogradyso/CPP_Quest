@@ -9,7 +9,19 @@
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
-      "ctestCommandArgs": ""
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "Boost_INCLUDE_DIR",
+          "value": "C:\\boost",
+          "type": "PATH"
+        },
+        {
+          "name": "boost_combine_DIR",
+          "value": "C:/boost/include/boost-1_77/boost/range",
+          "type": "PATH"
+        }
+      ]
     }
   ]
 }

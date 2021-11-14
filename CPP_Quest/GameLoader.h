@@ -12,12 +12,12 @@ private:
 	std::filesystem::path gameFilePath;
 public:
 	GameLoader();
-	GameLoader(std::filesystem::path currentGameFilePath);
+	GameLoader(std::filesystem::path);
 	std::filesystem::path CreateNewGameFile(std::string, std::string, std::string);
 	QuestCharacter_H::QuestCharacter LoadGameFile();
 	void setGameFilePath(std::filesystem::path);
-	//SaveGameFile();
-	///LoadNextLesson();
+	std::filesystem::path getGameFilePath();
+	bool saveProgress(int);
 };
 
 #endif

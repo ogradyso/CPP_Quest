@@ -2,8 +2,8 @@
 #include "tinyxml2.h"
 #include <string>
 #include <iostream>
-//#include <boost/foreach.hpp>
-//#include <boost/range/combine.hpp>
+#include <boost/foreach.hpp>
+#include <boost/range/combine.hpp>
 #include <array>
 #include <filesystem>
 #include <fstream>
@@ -27,7 +27,6 @@ QuestCharacter::QuestCharacter()
 	this->nextLessonPrompts;
 	this->totalExperience = 0;
 }
-
 
 void QuestCharacter::getLessonInfo(const char* lessonRoot, const char* lessonLevel, const char* lessonFilePath)
 {
@@ -77,7 +76,7 @@ int QuestCharacter::startNextLesson() {
 	std::filesystem::remove(lessonAnswerFile);
 	output_fstream.open(lessonAnswerFile, std::ios_base::out);
 
-	/*BOOST_FOREACH(boost::tie(prompt, correctAnswer), boost::combine(this->nextLessonPrompts, this->nextLessonAnswers))
+	BOOST_FOREACH(boost::tie(prompt, correctAnswer), boost::combine(this->nextLessonPrompts, this->nextLessonAnswers))
 	{
 		std::cout << prompt << '\n';
 		std::string response;
@@ -89,7 +88,7 @@ int QuestCharacter::startNextLesson() {
 			output_fstream << response << '\n';
 		}
 
-	}*/
+	}
 	output_fstream.close();
 
 	return expPoints;
@@ -102,22 +101,4 @@ int QuestCharacter::getExp() {
 
 void QuestCharacter::setExp(int expGained) {
 	this->totalExperience += expGained;
-}
-
-bool QuestCharacter::saveProgress(std::string gamefilePath) {
-	tinyxml2::XMLDocument xmlDoc;
-	tinyxml2::XMLError eResult = xmlDoc.LoadFile(gamefilePath.c_str());
-
-	const char* gameFileRoot = "GameFile";
-	const char* playerNode = "PlayerOne";
-	tinyxml2::XMLNode* PlayersRoot = xmlDoc.FirstChildElement(gameFileRoot);
-
-	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
-
-	int experienceToSave = this->getExp();
-	playerData->SetAttribute("CurrentExp", std::to_string(experienceToSave).c_str());
-	PlayersRoot->InsertEndChild(playerData);
-	xmlDoc.SaveFile(gamefilePath.c_str());
-
-	return true;
 }

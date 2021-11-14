@@ -16,7 +16,11 @@ GameLoader::GameLoader(std::filesystem::path gameFilePath) : gameFilePath(gameFi
 
 void GameLoader::setGameFilePath(std::filesystem::path newGameFilePath) {
 	this->gameFilePath = newGameFilePath;
-}
+};
+
+std::filesystem::path GameLoader::getGameFilePath() {
+	return this->gameFilePath;
+};
 
 QuestCharacter_H::QuestCharacter GameLoader::LoadGameFile() {
 	tinyxml2::XMLDocument xmlDoc;
@@ -57,3 +61,20 @@ std::filesystem::path GameLoader::CreateNewGameFile(std::string playerName, std:
 	return gameFilePath;
 
 };
+
+bool GameLoader::saveProgress(int experienceToSave) {
+	tinyxml2::XMLDocument xmlDoc;
+	tinyxml2::XMLError eResult = xmlDoc.LoadFile(this->gameFilePath.string().c_str());
+
+	const char* gameFileRoot = "GameFile";
+	const char* playerNode = "PlayerOne";
+	tinyxml2::XMLNode* PlayersRoot = xmlDoc.FirstChildElement(gameFileRoot);
+
+	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
+
+	playerData->SetAttribute("CurrentExp", std::to_string(experienceToSave).c_str());
+	PlayersRoot->InsertEndChild(playerData);
+	xmlDoc.SaveFile(this->gameFilePath.string().c_str());
+
+	return true;
+}
