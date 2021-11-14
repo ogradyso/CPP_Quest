@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.10)
 
-#set(BOOST_ROOT "C:\\boost") # either set it here or from the command line  
+set(BOOST_ROOT "C:\\boost") # either set it here or from the command line  
 set(Boost_USE_STATIC_LIBS OFF) 
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
