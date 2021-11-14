@@ -1,19 +1,7 @@
 # ninja log v5
-0	2387	6585385534206448	CPP_Quest/CMakeFiles/CPP_Quest.dir/CPP_Quest.cpp.obj	27595ed794e5f891
-5	2030	6585172742108113	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestCharacter.cpp.obj	62f9455ad88163bf
-11	419	6585172726007742	CPP_Quest/CMakeFiles/CPP_Quest.dir/tinyxml2.cpp.obj	8379dae74c4d427a
-4	2287	6585385533206466	CPP_Quest/CMakeFiles/CPP_Quest.dir/GameLoader.cpp.obj	9354ed86cbd03a24
-10	2545	6585385535776452	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestGame.cpp.obj	60e72b582e5c87b9
-2545	2754	6585385537536431	CPP_Quest/CPP_Quest.exe	80be0b6a10c7af79
-11	736	6585609690622601	CPP_Quest/CMakeFiles/CPP_Quest.dir/tinyxml2.cpp.obj	2ad4060addb7505c
-8	2666	6585609709892610	CPP_Quest/CMakeFiles/CPP_Quest.dir/GameLoader.cpp.obj	562ae3f5ed543b17
-6	2711	6585609710362597	CPP_Quest/CMakeFiles/CPP_Quest.dir/CPP_Quest.cpp.obj	fc050d5b454e4e9b
-3	2970	6585609712962574	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestGame.cpp.obj	e945dd83d109c2fe
-1	3695	6585609720172559	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestCharacter.cpp.obj	a7dcedd774648a12
-3707	3982	6585609722612926	CPP_Quest/CPP_Quest.exe	80be0b6a10c7af79
-10	2185	6585627923166598	CPP_Quest/CMakeFiles/CPP_Quest.dir/GameLoader.cpp.obj	562ae3f5ed543b17
 12	2316	6585627924476275	CPP_Quest/CMakeFiles/CPP_Quest.dir/CPP_Quest.cpp.obj	fc050d5b454e4e9b
-14	2504	6585627926346257	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestGame.cpp.obj	e945dd83d109c2fe
 7	3224	6585627933449584	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestCharacter.cpp.obj	a7dcedd774648a12
+11	736	6585609690622601	CPP_Quest/CMakeFiles/CPP_Quest.dir/tinyxml2.cpp.obj	2ad4060addb7505c
+10	2185	6585627923166598	CPP_Quest/CMakeFiles/CPP_Quest.dir/GameLoader.cpp.obj	562ae3f5ed543b17
 7	2055	6585630555106705	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestGame.cpp.obj	e945dd83d109c2fe
 2056	2249	6585630556726364	CPP_Quest/CPP_Quest.exe	80be0b6a10c7af79

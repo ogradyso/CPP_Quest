@@ -1,0 +1,7 @@
+# ninja log v5
+11	544	6585963816673664	CPP_Quest/CMakeFiles/CPP_Quest.dir/tinyxml2.cpp.obj	733c31f834b75882
+3	2304	6585963834233696	CPP_Quest/CMakeFiles/CPP_Quest.dir/GameLoader.cpp.obj	89223e9b6d1ab3d5
+0	2997	6585963841174033	CPP_Quest/CMakeFiles/CPP_Quest.dir/CPP_Quest.cpp.obj	1f2d31fd9740f986
+6	3762	6585963848793648	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestCharacter.cpp.obj	85afd3a89a48e51b
+8	3075	6585963841943685	CPP_Quest/CMakeFiles/CPP_Quest.dir/QuestGame.cpp.obj	8a8b3615a3073d36
+3763	4111	6585963852233653	CPP_Quest/CPP_Quest.exe	80be0b6a10c7af79
