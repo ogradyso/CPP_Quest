@@ -3,7 +3,16 @@
 #
 cmake_minimum_required (VERSION 3.10)
 
-set(BOOST_ROOT "C:\\boost") # either set it here or from the command line  
+
+if (UNIX)
+	set(BOOST_ROOT "$HOME/boost_1_77_0/boost")
+	set(Boost_INCLUDE_DIR "$HOME/boost_1_77_0/boost")
+    set(boost_combine_DIR "$HOME/boost_1_77_0/boost/range")
+else (UNIX)
+	set(BOOST_ROOT "C:\\boost") # either set it here or from the command line  
+endif (UNIX)
+
+
 set(Boost_USE_STATIC_LIBS OFF) 
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
