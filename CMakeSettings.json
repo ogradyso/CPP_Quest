@@ -51,7 +51,19 @@
       "remoteCopySources": true,
       "rsyncCommandArgs": "-t --delete --delete-excluded",
       "remoteCopyBuildOutput": false,
-      "remoteCopySourcesMethod": "rsync"
+      "remoteCopySourcesMethod": "rsync",
+      "variables": [
+        {
+          "name": "Boost_INCLUDE_DIR",
+          "value": "/home/tnk/boost_1_77_0/boost",
+          "type": "PATH"
+        },
+        {
+          "name": "boost_combine_DIR",
+          "value": "/home/tnk/boost_1_77_0/boost",
+          "type": "PATH"
+        }
+      ]
     },
     {
       "name": "Linux-GCC-Release",
