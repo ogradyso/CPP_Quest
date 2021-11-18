@@ -9,9 +9,7 @@ The following steps have been tested on Ubuntu
 1. Install g++
 `sudo apt install build-essential`
 2. Install boost libraries 
-Download the latest boost release from github: https://github.com/bfgroup/b2/releases
-Run `./boostrap.sh`
-Install boost in the default location: `sudo ./b2 intall --prefix=/usr/include/boost"
+Run `sudo apt-get install libboost-all-dev`
 3. Install cmake: 
 Download the latest cmake from github: https://github.com/Kitware/CMake
 Run `./boostrap && make && sudo make install`

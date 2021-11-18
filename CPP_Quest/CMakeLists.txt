@@ -5,9 +5,9 @@ cmake_minimum_required (VERSION 3.10)
 
 
 if (UNIX)
-	set(BOOST_ROOT $HOME/boost)
-	set(Boost_INCLUDE_DIR $HOME/boost)
-    set(boost_combine_DIR $HOME/boost/range)
+	set(BOOST_ROOT /usr/include)
+	set(Boost_INCLUDE_DIR /usr/include)
+    set(boost_combine_DIR /usr/include/boost/range)
 else (UNIX)
 	set(BOOST_ROOT "C:\\boost") # either set it here or from the command line  
 endif (UNIX)
