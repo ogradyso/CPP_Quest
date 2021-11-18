@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include "QuestGame.h"
 #include "QuestCharacter.h"
