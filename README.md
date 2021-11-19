@@ -4,15 +4,21 @@ This is a RPG-style console game for people interested in learning C++. I decide
  
 ## Get started:
 ### Linux
-The following steps have been tested on Ubuntu 
+The following steps have been tested on Ubuntu & Debian 
 
 1. Install g++
+
 `sudo apt install build-essential`
-2. Install boost libraries 
+
+2. Install boost libraries
+
 Run `sudo apt-get install libboost-all-dev`
+
 3. Install cmake: 
 Download the latest cmake from github: https://github.com/Kitware/CMake
+
 Run `./boostrap && make && sudo make install`
+
 Depending on your configuration, you may need to install OpenSSL: 
 
 `sudo apt install libssl-dev`

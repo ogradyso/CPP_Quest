@@ -8,6 +8,7 @@ if (UNIX)
 	set(BOOST_ROOT /usr/include)
 	set(Boost_INCLUDE_DIR /usr/include)
     set(boost_combine_DIR /usr/include/boost/range)
+	target_link_libraries(CPP_Quest stdc++fs)
 else (UNIX)
 	set(BOOST_ROOT "C:\\boost") # either set it here or from the command line  
 endif (UNIX)
