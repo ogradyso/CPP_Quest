@@ -16,8 +16,10 @@ Run `./boostrap && make && sudo make install`
 Depending on your configuration, you may need to install OpenSSL: `sudo apt install libssl-dev`
 4. Clone the CPP_Quest source code
 5. Build with CMAKE: 
-'cd out/build/CPP_Quest'
-`ccmake ../../..`
+`cd out/build`
+
+`ccmake ../..`
+
 `make`
 6. Now you can play the game or customize it in any way you would like!
 
@@ -32,7 +34,6 @@ The current version was developed on a Windows 10 machine with visual studio usi
 
 ## TODO:
 ### Game Development:
--add conditional to CMAKE for Unix build
 -improve MainCharacter data loading component; 
 -create test system
 -create system for lesson management
