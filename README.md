@@ -13,13 +13,16 @@ Run `sudo apt-get install libboost-all-dev`
 3. Install cmake: 
 Download the latest cmake from github: https://github.com/Kitware/CMake
 Run `./boostrap && make && sudo make install`
-Depending on your configuration, you may need to install OpenSSL: `sudo apt install libssl-dev`
+Depending on your configuration, you may need to install OpenSSL: 
+
+`sudo apt install libssl-dev`
+
 4. Clone the CPP_Quest source code
 5. Build with CMAKE: 
 
 `cd out/build`
 
-`ccmake ../..`
+`cmake ../..`
 
 `make`
 
@@ -36,10 +39,11 @@ The current version was developed on a Windows 10 machine with visual studio usi
 
 ## TODO:
 ### Game Development:
--improve MainCharacter data loading component; 
 -create test system
 -create system for lesson management
 -Generate more lesson XMLs based on the sequence of Stroustrup's Tour of C++
--Create sidequest system
 -Create storyline
+-Create leaner classes
+-Create fighter classes
+-Create sidequest system
 -Add graphics

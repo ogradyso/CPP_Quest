@@ -13,15 +13,19 @@ private:
 	std::string nextLessonTitle;
 	std::vector<std::string> nextLessonPrompts;
 	std::vector<std::string> nextLessonAnswers;
-public:
+	std::string name;
 	std::string learnerClass;
+	std::string fighterClass;
+public:
 	QuestCharacter();
-	QuestCharacter(int);
+	QuestCharacter(std::string, std::string, std::string, int);
 	void getLessonInfo(const char*, const char*, const char*);
 	int startNextLesson();
 	int getExp();
 	void setExp(int);
-	bool saveProgress(std::string);
+	std::string getLearnerClass();
+	std::string getFighterClass();
+	std::string getName();
 };
 
 

@@ -1,4 +1,3 @@
-#pragma once
 #include <string>
 #include <iostream>
 #include "QuestGame.h"
@@ -45,7 +44,7 @@ void QuestGame::StartGame() {
 };
 
 int QuestGame::StartLesson() {
-	std::cout << "Starting the next lesson..." << '\n';
+	std::cout << this->player.getName() + " you are about to embark on your next lesson!" << '\n';
 	int expGained = this->player.startNextLesson();
 	std::cout << "You gained " << expGained << " experience points!" << '\n';
 	return expGained;

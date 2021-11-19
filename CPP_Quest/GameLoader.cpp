@@ -33,8 +33,11 @@ QuestCharacter_H::QuestCharacter GameLoader::LoadGameFile() {
 
 	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
 	const char* savedExperience = playerData->Attribute("CurrentExp");
-
-	QuestCharacter mainCharacter = QuestCharacter(std::stoi(savedExperience));
+	const char* characterName = playerData->Attribute("PlayerName");
+	const char* learnerClass = playerData->Attribute("LearningClass");
+	const char* fighterClass = playerData->Attribute("CharacterClass");
+	
+	QuestCharacter mainCharacter = QuestCharacter(characterName, learnerClass, fighterClass, std::stoi(savedExperience));
 
 	return mainCharacter;
 };

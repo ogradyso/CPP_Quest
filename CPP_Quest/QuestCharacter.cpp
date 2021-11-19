@@ -8,7 +8,7 @@
 #include <filesystem>
 #include <fstream>
 
-QuestCharacter::QuestCharacter(int savedExperience)
+QuestCharacter::QuestCharacter(std::string characterName, std::string characterLearnClass, std::string characterFightClass, int savedExperience)
 {
 	this->learnerLevel = 0;
 	this->nextLesson = 0;
@@ -16,6 +16,9 @@ QuestCharacter::QuestCharacter(int savedExperience)
 	this->nextLessonTitle;
 	this->nextLessonPrompts;
 	this->totalExperience = savedExperience;
+	this->name = characterName;
+	this->learnerClass = characterLearnClass;
+	this->fighterClass = characterFightClass;
 }
 
 QuestCharacter::QuestCharacter()
@@ -101,4 +104,15 @@ int QuestCharacter::getExp() {
 
 void QuestCharacter::setExp(int expGained) {
 	this->totalExperience += expGained;
+}
+
+std::string QuestCharacter::getLearnerClass() {
+	return this->learnerClass;
+}
+
+std::string QuestCharacter::getFighterClass() {
+	return this->fighterClass;
+}
+std::string QuestCharacter::getName() {
+	return this->name;
 }
