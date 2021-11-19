@@ -16,7 +16,8 @@ Run `./boostrap && make && sudo make install`
 Depending on your configuration, you may need to install OpenSSL: `sudo apt install libssl-dev`
 4. Clone the CPP_Quest source code
 5. Build with CMAKE: 
-`ccmake ../CPP_Quest`
+'cd out/build/CPP_Quest'
+`ccmake ../../..`
 `make`
 6. Now you can play the game or customize it in any way you would like!
 
