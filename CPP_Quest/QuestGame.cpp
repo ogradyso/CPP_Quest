@@ -15,31 +15,47 @@ QuestGame::QuestGame(GameLoader_H::GameLoader questLoader) : fileLoader(questLoa
 
 void QuestGame::StartGame() {
 	bool continueGame = true;
-	while (continueGame) {
-		const char* lessonRoot = "IntroLessons";
-		const char* lessonLevel = "Lesson1";
-		int expGain;
-		std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/IntroLessons.xml";
-		this->player = this->fileLoader.LoadGameFile();
-		this->player.getLessonInfo(lessonRoot, lessonLevel, lessonFilepath.string().c_str());
+	const char* lessonRoot = "TheBasics";
+	int expGain;
+	std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/TheBasics.xml";
+	this->player = this->fileLoader.LoadGameFile();
+	this->player.getLessonInfo(lessonRoot, this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
+	for (int i = 0; i <= 30; i++) {
+		std::cout << '\n';
+	}
+	std::cout << "Welcome to ThistleWood! This is you training environment." << '\n';
+	std::cout << "In order to prepare you for the journey ahead, we must" << '\n';
+	std::cout << "first train you in the art of C++ Questing." << '\n\n';
+	std::string journeyChoice = this->inputValidation("[T|J]", "If you are brave, you may choose to start your (J)ourney now, but we recommend you (T)rain first!\n", "You will need to enter either T for Train of J for Journey.");
+	if (*journeyChoice.begin() == 'T') {
 		expGain = this->StartLesson();
-		this->player.setExp(expGain);
-		std::string continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
-
-		switch (*continueChoice.begin()) {
-		case 'C':
-			expGain = this->StartLesson();
-			[[fallthrough]];
-		case 'S':
-			this->SaveGame();
-			break;
-		case 'E':
-			std::cout << "Its probably for the best, come back when you are ready. We'll be here!" << '\n';
-			continueGame = false;
-			break;
-		default:
-			std::cout << "Something went wrong." << '\n';
+		if (expGain >= 4) {
+			this->player.setNextLesson("Lesson2");
 		}
+		this->player.setExp(expGain);
+		std::string continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");;
+		while (continueGame) {
+			switch (*continueChoice.begin()) {
+			case 'C':
+				this->player.getLessonInfo(lessonRoot, this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
+				expGain = this->StartLesson();
+				continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
+				[[fallthrough]];
+			case 'S':
+				this->SaveGame();
+				continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
+				break;
+			case 'E':
+				std::cout << "Its probably for the best, come back when you are ready. We'll be here!" << '\n';
+				continueGame = false;
+				break;
+			default:
+				std::cout << "Something went wrong." << '\n';
+			}
+		}
+	}
+	else {
+		std::cout << "Feature broken at this time.";
 	}
 };
 

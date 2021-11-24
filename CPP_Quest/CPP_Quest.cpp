@@ -81,8 +81,7 @@ int main() {
 	std::cout << "QQ  QQ   UU  UU  EE         SS     TT    " << '\n';
 	std::cout << "  QQ     UUUUUU  EE      SS  SS    TT    " << '\n';
 	std::cout << "   QQQ    UUUU   EEEEEE    SS      TT    " << '\n' << '\n';
-	std::cout << "You have chosen to embark on an epic journey!" << "\n\n";
-	std::string startChoice = currentGame.inputValidation("[L|S|E]", "Would you like to (L)oad a saved Quest, (S)tart a new Quest, or (E)xit the game and return to the command line?\n", "You will need to enter either an L for Load, an S for Start or an E for Exit.\n");
+	std::string startChoice = currentGame.inputValidation("[L|S|E]", "Would you like to (L)oad a saved Quest, (S)tart a new Quest, or (E)xit the game and return to the command line?\n", "You will need to enter either L for Load, S for Start or an E for Exit.\n");
 
 	switch (*startChoice.begin()) {
 	case 'L':

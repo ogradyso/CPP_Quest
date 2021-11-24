@@ -4,9 +4,11 @@
 cmake_minimum_required (VERSION 3.10)
 
 project ("CPP_Quest")
+project ("CPP_Quest_Test")
 
 # Include sub-projects.
 add_subdirectory ("CPP_Quest")
+add_subdirectory ("test")
 
 target_compile_features(CPP_Quest PUBLIC cxx_std_20)
 

@@ -1,0 +1,17 @@
+<UserDefinedTypes>
+  <Lesson1>
+    <LessonTitle>Programs</LessonTitle>
+      <LessonPrompts>
+          <Prompt>In this lesson, you will learn about compling source code into object files and then linking object files to create an executable program. Enter OK:
+          </Prompt>
+      </LessonPrompts>
+      <LessonAnswers>
+          <Answer>OK</Answer>
+       </LessonAnswers>
+       <LessonRewards>
+          <Experience></Experience>
+          <Items></Items>
+          <Special></Special>
+       </LessonRewards>
+  </Lesson1>
+</UserDefinedTypes>

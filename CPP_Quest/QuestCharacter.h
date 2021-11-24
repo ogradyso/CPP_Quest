@@ -9,7 +9,7 @@ class QuestCharacter {
 private:
 	int learnerLevel;
 	int totalExperience;
-	int nextLesson;
+	std::string nextLesson;
 	std::string nextLessonTitle;
 	std::vector<std::string> nextLessonPrompts;
 	std::vector<std::string> nextLessonAnswers;
@@ -18,7 +18,7 @@ private:
 	std::string fighterClass;
 public:
 	QuestCharacter();
-	QuestCharacter(std::string, std::string, std::string, int);
+	QuestCharacter(std::string, std::string, std::string, int, std::string);
 	void getLessonInfo(const char*, const char*, const char*);
 	int startNextLesson();
 	int getExp();
@@ -26,6 +26,8 @@ public:
 	std::string getLearnerClass();
 	std::string getFighterClass();
 	std::string getName();
+	std::string getNextLesson();
+	void setNextLesson(std::string);
 };
 
 

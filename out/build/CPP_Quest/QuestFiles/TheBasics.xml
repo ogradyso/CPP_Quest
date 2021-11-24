@@ -1,44 +1,85 @@
-<IntroLessons>
+<TheBasics>
   <Lesson1>
-    <LessonTitle>Hello World!</LessonTitle>
+    <LessonTitle>Programs</LessonTitle>
       <LessonPrompts>
-          <Prompt>In this lesson we are going to write our first C++ program to print "Hello World!" to the conosle. Enter OK:
-          </Prompt>
-          <Prompt>The first few lines of a C++ progam usually contain the code libraries the program needs to run properly. These are referred to as "inlcude" directives and they look like this:
-
-          #include &amp;lt;NameOfLibrary&amp;gt;
-
-          Sometimes these inlcude statments will vary in how they are written but we are getting ahead of ourselves.
-          Write the include statement for the input-output stream (iostream) library:
-          </Prompt>
-          <Prompt>Every C++ program uses a driver function named "main()" which represents the entry point for the program. 
-                  The main function returns an integer so it preceeded by the keyword "int". Enter the proper main function now:
-          </Prompt>
-          <Prompt>The scope of the main function begins with a curly brace "{" which is usually placed on the following line. 
-                  Begin the scope of the main function by entering an opening curly brace:
-          </Prompt>
-          <Prompt>Now you can use the iostream library we entered on the first line to print to the console. You can do this by calling the cout function from the std (standard, often pronounced "stood") library.
-                  You do this by typing "std::cout and then using the input operator "&lt;&lt;" followed by the output you would like to print: "Hello World!\"\n and remember to end the line with a semicolon (;)
-          </Prompt>
-          <Prompt>Finally, you need to close out the scope of the main function to tell the compiler that the function is complete. You do this by entering a closing curly brace: 
-          </Prompt>
+        <Prompt>
+          In this lesson, you will learn about compling source code into object files and then linking 
+          object files to create an executable program. Enter OK:
+        </Prompt>
+        <Prompt>
+          Programs start with source code which is what you write in C++. For each source code file, 
+          the compiler generates on object file. Next a linker is used to link all of the object files 
+          into an executable program. Executable programs are specific to the combination of hardware 
+          and OS on which they were compiled. Enter compiler, executable program, linker, object files, 
+          source code in the correct order (comma separated):
+        </Prompt>
+        <Prompt>
+          The core language features of C++ include built in data types and control flow elements. While
+          standard library (std) components consist of containers for datatypes, as well as input/output
+          operations. C++ is statically typed meaning that the compliler needs to know the type of an
+          entity when it is to be used in the program. Which set of features/components would you rely
+          on to create a for loop?
+        </Prompt>
       </LessonPrompts>
       <LessonAnswers>
           <Answer>OK</Answer>
-          <Answer>#include &lt;iostream&gt;</Answer>
-          <Answer>int main()</Answer>
-          <Answer>{</Answer>
-          <Answer>std::cout &lt;&lt; \"Hello World!\";</Answer>
-          <Answer>}</Answer>
+          <Answer>source code, compiler, object files, linker, executable program</Answer>
+          <Answer>core language features</Answer>
        </LessonAnswers>
        <LessonRewards>
-          <Experience></Experience>
+          <Experience>2</Experience>
           <Items></Items>
           <Special></Special>
        </LessonRewards>
+    
   </Lesson1>
-  
+
   <Lesson2>
+    <LessonTitle>Hello World!</LessonTitle>
+    <LessonPrompts>
+      <Prompt>
+        In this lesson we are going to write our first C++ program to print "Hello World!" to the conosle. Enter OK:
+      </Prompt>
+      <Prompt>
+        The first few lines of a C++ progam usually contain the code libraries the program needs to run properly. These are referred to as "inlcude" directives and they look like this:
+
+        #include &amp;lt;NameOfLibrary&amp;gt;
+
+        Sometimes these inlcude statments will vary in how they are written but we are getting ahead of ourselves.
+        Write the include statement for the input-output stream (iostream) library:
+      </Prompt>
+      <Prompt>
+        Every C++ program uses a driver function named "main()" which represents the entry point for the program.
+        The main function returns an integer so it preceeded by the keyword "int". Enter the proper main function now:
+      </Prompt>
+      <Prompt>
+        The scope of the main function begins with a curly brace "{" which is usually placed on the following line.
+        Begin the scope of the main function by entering an opening curly brace:
+      </Prompt>
+      <Prompt>
+        Now you can use the iostream library we entered on the first line to print to the console. You can do this by calling the cout function from the std (standard, often pronounced "stood") library.
+        You do this by typing "std::cout and then using the input operator "&lt;&lt;" followed by the output you would like to print: "Hello World!\"\n and remember to end the line with a semicolon (;)
+      </Prompt>
+      <Prompt>
+        Finally, you need to close out the scope of the main function to tell the compiler that the function is complete. You do this by entering a closing curly brace:
+      </Prompt>
+    </LessonPrompts>
+    <LessonAnswers>
+      <Answer>OK</Answer>
+      <Answer>#include &lt;iostream&gt;</Answer>
+      <Answer>int main()</Answer>
+      <Answer>{</Answer>
+      <Answer>std::cout &lt;&lt; \"Hello World!\";</Answer>
+      <Answer>}</Answer>
+    </LessonAnswers>
+    <LessonRewards>
+      <Experience>5</Experience>
+      <Items></Items>
+      <Special></Special>
+    </LessonRewards>
+  </Lesson2>
+  
+  <Lesson3>
     <LessonTitle>Creating Functions</LessonTitle>
     <LessonPrompts>
       <Prompt>In this lesson, we are going to practice writing functions: (enter \"OK\")
@@ -124,6 +165,21 @@
       <Items></Items>
       <Special></Special>
     </LessonRewards>
-  </Lesson2>
-
-</IntroLessons>
+  </Lesson3>
+  <Lesson4>
+    <LessonTitle>Programs</LessonTitle>
+    <LessonPrompts>
+      <Prompt>
+        In this lesson, you will learn about compling source code into object files and then linking object files to create an executable program. Enter OK:
+      </Prompt>
+    </LessonPrompts>
+    <LessonAnswers>
+      <Answer>OK</Answer>
+    </LessonAnswers>
+    <LessonRewards>
+      <Experience></Experience>
+      <Items></Items>
+      <Special></Special>
+    </LessonRewards>
+  </Lesson4>
+</TheBasics>
