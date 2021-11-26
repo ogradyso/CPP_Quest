@@ -1,4 +1,4 @@
-<Classes>
+<Concurrency>
   <Lesson1>
     <LessonTitle>Programs</LessonTitle>
       <LessonPrompts>
@@ -14,4 +14,4 @@
           <Special></Special>
        </LessonRewards>
   </Lesson1>
-</Classes>
+</Concurrency>

@@ -37,8 +37,9 @@ QuestCharacter_H::QuestCharacter GameLoader::LoadGameFile() {
 	const char* learnerClass = playerData->Attribute("LearningClass");
 	const char* fighterClass = playerData->Attribute("CharacterClass");
 	const char* nextLessonLevel = playerData->Attribute("NextLesson");
+	const char* nextLessonUnit = playerData->Attribute("NextLessonUnit");
 	
-	QuestCharacter mainCharacter = QuestCharacter(characterName, learnerClass, fighterClass, std::stoi(savedExperience), nextLessonLevel);
+	QuestCharacter mainCharacter = QuestCharacter(characterName, learnerClass, fighterClass, std::stoi(savedExperience), nextLessonLevel, nextLessonUnit);
 
 	return mainCharacter;
 };
@@ -58,6 +59,7 @@ std::filesystem::path GameLoader::CreateNewGameFile(std::string playerName, std:
 	pPlayerElement->SetAttribute("CharacterClass", characterClass.c_str());
 	pPlayerElement->SetAttribute("CurrentExp", initExp);
 	pPlayerElement->SetAttribute("NextLesson", "Lesson1");
+	pPlayerElement->SetAttribute("NextLessonUnit", "TheBasics");
 
 	pRoot->InsertEndChild(pPlayerElement);
 

@@ -15,11 +15,10 @@ QuestGame::QuestGame(GameLoader_H::GameLoader questLoader) : fileLoader(questLoa
 
 void QuestGame::StartGame() {
 	bool continueGame = true;
-	const char* lessonRoot = "TheBasics";
 	int expGain;
-	std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/TheBasics.xml";
 	this->player = this->fileLoader.LoadGameFile();
-	this->player.getLessonInfo(lessonRoot, this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
+	std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/" + this->player.getNextLessonUnit() + ".xml";
+	this->player.getLessonInfo(this->player.getNextLessonUnit().c_str(), this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
 	for (int i = 0; i <= 30; i++) {
 		std::cout << '\n';
 	}
@@ -29,17 +28,20 @@ void QuestGame::StartGame() {
 	std::string journeyChoice = this->inputValidation("[T|J]", "If you are brave, you may choose to start your (J)ourney now, but we recommend you (T)rain first!\n", "You will need to enter either T for Train of J for Journey.");
 	if (*journeyChoice.begin() == 'T') {
 		expGain = this->StartLesson();
-		if (expGain >= 4) {
-			this->player.setNextLesson("Lesson2");
+		if (expGain >= this->player.getNextLessonTargetExp()) {
+			this->player.setNextLesson();
 		}
 		this->player.setExp(expGain);
 		std::string continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");;
 		while (continueGame) {
 			switch (*continueChoice.begin()) {
 			case 'C':
-				this->player.getLessonInfo(lessonRoot, this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
+				lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/" + this->player.getNextLessonUnit() + ".xml";
+				this->player.getLessonInfo(this->player.getNextLessonUnit().c_str(), this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
 				expGain = this->StartLesson();
-				continueChoice = this->inputValidation("[C|S|E]", "Would you like to (C)ontinue with the next lesson, (S)ave your current progress, or (E)xit the game and return to the command line?\n", "You will need to enter either a C for Continue, an S for Save or an E for Exit.\n");
+				if (expGain >= this->player.getNextLessonTargetExp()) {
+					this->player.setNextLesson();
+				}
 				[[fallthrough]];
 			case 'S':
 				this->SaveGame();

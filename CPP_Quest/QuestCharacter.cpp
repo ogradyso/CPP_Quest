@@ -8,17 +8,23 @@
 #include <filesystem>
 #include <fstream>
 
-QuestCharacter::QuestCharacter(std::string characterName, std::string characterLearnClass, std::string characterFightClass, int savedExperience, std::string nextLessonLevel)
+const std::vector<std::string> lessonUnits{"TheBasics", "UserDefinedTypes", "Modularity", "Classes", "EssentialOperations",
+"Templates", "ConceptsAndGenericProgramming","LibraryOverview", "StringsAndRegularExpressions", "InputAndOutput",
+"Containers", "Algorithms", "Utilities", "Numerics", "Concurrency", "HistoryAndCompatability"};
+
+QuestCharacter::QuestCharacter(std::string characterName, std::string characterLearnClass, std::string characterFightClass, int savedExperience, std::string nextLessonLevel, std::string nextLessonUnitName)
 {
 	this->learnerLevel = 0;
 	this->nextLesson = nextLessonLevel;
 	this->nextLessonAnswers;
-	this->nextLessonTitle;
+	this->nextLessonUnit = nextLessonUnitName;
 	this->nextLessonPrompts;
 	this->totalExperience = savedExperience;
 	this->name = characterName;
 	this->learnerClass = characterLearnClass;
 	this->fighterClass = characterFightClass;
+	this->nextLessonTargetExp;
+	std::vector<std::string> nextLessonAnswers;
 }
 
 QuestCharacter::QuestCharacter()
@@ -26,7 +32,7 @@ QuestCharacter::QuestCharacter()
 	this->learnerLevel = 0;
 	this->nextLesson;
 	this->nextLessonAnswers;
-	this->nextLessonTitle;
+	this->nextLessonUnit;
 	this->nextLessonPrompts;
 	this->totalExperience = 0;
 }
@@ -38,11 +44,6 @@ void QuestCharacter::getLessonInfo(const char* lessonRoot, const char* lessonLev
 	tinyxml2::XMLError eResult = xmlDoc.LoadFile(lessonFilePath);
 
 	tinyxml2::XMLNode* LessonRoot = xmlDoc.FirstChildElement(lessonRoot);
-
-	tinyxml2::XMLElement* pLessonTitleElement = LessonRoot->FirstChildElement(lessonLevel)->FirstChildElement("LessonTitle");
-	const char* plessonTitle = pLessonTitleElement->GetText();
-	std::string strTitle{ plessonTitle };
-	this->nextLessonTitle = strTitle;
 
 	tinyxml2::XMLElement* pListElement = LessonRoot->FirstChildElement(lessonLevel)->FirstChildElement("LessonPrompts")->FirstChildElement("Prompt");
 
@@ -64,6 +65,10 @@ void QuestCharacter::getLessonInfo(const char* lessonRoot, const char* lessonLev
 
 		pListElement = pListElement->NextSiblingElement("Answer");
 	}
+	tinyxml2::XMLElement* expListElement = LessonRoot->FirstChildElement(lessonLevel)->FirstChildElement("LessonRewards")->FirstChildElement("Experience");
+	this->nextLessonTargetExp = std::stoi(expListElement->GetText());
+
+	eResult = xmlDoc.SaveFile(lessonFilePath);
 
 };
 
@@ -122,6 +127,44 @@ std::string QuestCharacter::getName() {
 std::string QuestCharacter::getNextLesson() {
 	return this->nextLesson;
 }
-void QuestCharacter::setNextLesson(std::string nextLessonLevel) {
-	this->nextLesson = nextLessonLevel;
+
+int QuestCharacter::getNextLessonTargetExp() {
+	return this->nextLessonTargetExp;
+}
+void QuestCharacter::setNextLesson() {
+	std::filesystem::path lessonFilePath = std::filesystem::current_path().string() + "/QuestFiles/" + this->getNextLessonUnit() + ".xml";
+
+	tinyxml2::XMLDocument xmlDoc;
+
+	tinyxml2::XMLError eResult = xmlDoc.LoadFile(lessonFilePath.string().c_str());
+
+	tinyxml2::XMLNode* LessonRoot = xmlDoc.FirstChildElement(this->getNextLessonUnit().c_str());
+
+	tinyxml2::XMLNode* pListElement = LessonRoot->FirstChildElement(this->getNextLesson().c_str());
+
+	tinyxml2::XMLNode* nextLessonElement = pListElement->NextSibling();
+	
+	if (nextLessonElement == nullptr) {
+		this->setNextLessonUnit();
+		this->nextLesson = "Lesson1";
+	}
+	else {
+		this->nextLesson = nextLessonElement->Value();
+	}
+
+	eResult = xmlDoc.SaveFile(lessonFilePath.string().c_str());
+}
+
+std::string QuestCharacter::getNextLessonUnit() {
+	return this->nextLessonUnit;
+}
+
+void QuestCharacter::setNextLessonUnit() {
+	std::string currentLessonUnit = this->getNextLessonUnit();
+	for (size_t i = 0; i < lessonUnits.size() - 1; ++i) {
+		if (lessonUnits[i] == currentLessonUnit) {
+			this->nextLessonUnit = lessonUnits[i + 1];
+			break;
+		}
+	}
 }
