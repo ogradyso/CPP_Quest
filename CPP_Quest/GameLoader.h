@@ -17,7 +17,7 @@ public:
 	QuestCharacter_H::QuestCharacter LoadGameFile();
 	void setGameFilePath(std::filesystem::path);
 	std::filesystem::path getGameFilePath();
-	bool saveProgress(int);
+	bool saveProgress(QuestCharacter);
 };
 
 #endif

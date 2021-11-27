@@ -70,7 +70,7 @@ int QuestGame::StartLesson() {
 
 void QuestGame::SaveGame() {
 	std::cout << "Saving your progress..." << '\n';
-	bool saveComplete = this->fileLoader.saveProgress(this->player.getExp());
+	bool saveComplete = this->fileLoader.saveProgress(this->player);
 
 };
 

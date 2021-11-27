@@ -46,7 +46,6 @@ The current version was developed on a Windows 10 machine with visual studio usi
 ## TODO:
 ### Game Development:
 -update test system
--save game file with lesson Unit and lesson level
 -update lesson XMLs based on the chapters of Stroustrup's Tour of C++
 -Create storyline
 -Create leaner classes

@@ -69,7 +69,7 @@ std::filesystem::path GameLoader::CreateNewGameFile(std::string playerName, std:
 
 };
 
-bool GameLoader::saveProgress(int experienceToSave) {
+bool GameLoader::saveProgress(QuestCharacter playerToSave) {
 	tinyxml2::XMLDocument xmlDoc;
 	tinyxml2::XMLError eResult = xmlDoc.LoadFile(this->gameFilePath.string().c_str());
 
@@ -79,7 +79,10 @@ bool GameLoader::saveProgress(int experienceToSave) {
 
 	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
 
-	playerData->SetAttribute("CurrentExp", std::to_string(experienceToSave).c_str());
+	playerData->SetAttribute("CurrentExp", std::to_string(playerToSave.getExp()).c_str());
+	playerData->SetAttribute("NextLesson", playerToSave.getNextLesson().c_str());
+	playerData->SetAttribute("NextLessonUnit", playerToSave.getNextLessonUnit().c_str());
+
 	PlayersRoot->InsertEndChild(playerData);
 	xmlDoc.SaveFile(this->gameFilePath.string().c_str());
 
