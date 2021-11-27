@@ -56,5 +56,4 @@ The current version was developed on a Windows 10 machine with visual studio usi
 
 ### Code improvements:
 -combine setters and getters for nextLesson and nextLesson unit by returning a tuple of strings
--change lessonRoot to use nextLessonUnit in getLessonInfo function of character class
 -change setNextLessonUnit and CharacterConstructor to use nextLessonUnit as a pointer rather than searching the vector each time with a for loop

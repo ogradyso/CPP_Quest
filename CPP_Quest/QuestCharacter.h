@@ -20,7 +20,7 @@ private:
 public:
 	QuestCharacter();
 	QuestCharacter(std::string, std::string, std::string, int, std::string, std::string);
-	void getLessonInfo(const char*, const char*, const char*);
+	void getLessonInfo();
 	int startNextLesson();
 	int getExp();
 	void setExp(int);

@@ -18,7 +18,7 @@ void QuestGame::StartGame() {
 	int expGain;
 	this->player = this->fileLoader.LoadGameFile();
 	std::filesystem::path lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/" + this->player.getNextLessonUnit() + ".xml";
-	this->player.getLessonInfo(this->player.getNextLessonUnit().c_str(), this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
+	this->player.getLessonInfo();
 	for (int i = 0; i <= 30; i++) {
 		std::cout << '\n';
 	}
@@ -37,7 +37,7 @@ void QuestGame::StartGame() {
 			switch (*continueChoice.begin()) {
 			case 'C':
 				lessonFilepath = std::filesystem::current_path().string() + "/QuestFiles/" + this->player.getNextLessonUnit() + ".xml";
-				this->player.getLessonInfo(this->player.getNextLessonUnit().c_str(), this->player.getNextLesson().c_str(), lessonFilepath.string().c_str());
+				this->player.getLessonInfo();
 				expGain = this->StartLesson();
 				if (expGain >= this->player.getNextLessonTargetExp()) {
 					this->player.setNextLesson();

@@ -37,15 +37,16 @@ QuestCharacter::QuestCharacter()
 	this->totalExperience = 0;
 }
 
-void QuestCharacter::getLessonInfo(const char* lessonRoot, const char* lessonLevel, const char* lessonFilePath)
+void QuestCharacter::getLessonInfo()
 {
 	tinyxml2::XMLDocument xmlDoc;
+	std::filesystem::path lessonFilePath = std::filesystem::current_path().string() + "/QuestFiles/" + this->getNextLessonUnit() + ".xml";
 
-	tinyxml2::XMLError eResult = xmlDoc.LoadFile(lessonFilePath);
+	tinyxml2::XMLError eResult = xmlDoc.LoadFile(lessonFilePath.string().c_str());
 
-	tinyxml2::XMLNode* LessonRoot = xmlDoc.FirstChildElement(lessonRoot);
+	tinyxml2::XMLNode* LessonRoot = xmlDoc.FirstChildElement(this->getNextLessonUnit().c_str());
 
-	tinyxml2::XMLElement* pListElement = LessonRoot->FirstChildElement(lessonLevel)->FirstChildElement("LessonPrompts")->FirstChildElement("Prompt");
+	tinyxml2::XMLElement* pListElement = LessonRoot->FirstChildElement(this->getNextLesson().c_str())->FirstChildElement("LessonPrompts")->FirstChildElement("Prompt");
 
 	while (pListElement != nullptr)
 	{
@@ -56,7 +57,7 @@ void QuestCharacter::getLessonInfo(const char* lessonRoot, const char* lessonLev
 		pListElement = pListElement->NextSiblingElement("Prompt");
 	}
 
-	pListElement = LessonRoot->FirstChildElement(lessonLevel)->FirstChildElement("LessonAnswers")->FirstChildElement("Answer");
+	pListElement = LessonRoot->FirstChildElement(this->getNextLesson().c_str())->FirstChildElement("LessonAnswers")->FirstChildElement("Answer");
 
 	while (pListElement != nullptr)
 	{
@@ -65,10 +66,10 @@ void QuestCharacter::getLessonInfo(const char* lessonRoot, const char* lessonLev
 
 		pListElement = pListElement->NextSiblingElement("Answer");
 	}
-	tinyxml2::XMLElement* expListElement = LessonRoot->FirstChildElement(lessonLevel)->FirstChildElement("LessonRewards")->FirstChildElement("Experience");
+	tinyxml2::XMLElement* expListElement = LessonRoot->FirstChildElement(this->getNextLesson().c_str())->FirstChildElement("LessonRewards")->FirstChildElement("Experience");
 	this->nextLessonTargetExp = std::stoi(expListElement->GetText());
 
-	eResult = xmlDoc.SaveFile(lessonFilePath);
+	eResult = xmlDoc.SaveFile(lessonFilePath.string().c_str());
 
 };
 
