@@ -50,9 +50,6 @@ The current version was developed on a Windows 10 machine with visual studio usi
 -Create storyline
 -Create leaner classes
 -Create fighter classes
+-create combat system
 -Create sidequest system
 -Add graphics
-
-### Code improvements:
--combine setters and getters for nextLesson and nextLesson unit by returning a tuple of strings
--change setNextLessonUnit and CharacterConstructor to use nextLessonUnit as a pointer rather than searching the vector each time with a for loop

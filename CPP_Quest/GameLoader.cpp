@@ -38,8 +38,11 @@ QuestCharacter_H::QuestCharacter GameLoader::LoadGameFile() {
 	const char* fighterClass = playerData->Attribute("CharacterClass");
 	const char* nextLessonLevel = playerData->Attribute("NextLesson");
 	const char* nextLessonUnit = playerData->Attribute("NextLessonUnit");
+
+	std::tuple <std::string, std::string> lessonInfo;
+	lessonInfo = std::make_tuple(nextLessonLevel, nextLessonUnit);
 	
-	QuestCharacter mainCharacter = QuestCharacter(characterName, learnerClass, fighterClass, std::stoi(savedExperience), nextLessonLevel, nextLessonUnit);
+	QuestCharacter mainCharacter = QuestCharacter(characterName, learnerClass, fighterClass, std::stoi(savedExperience), lessonInfo);
 
 	return mainCharacter;
 };
@@ -80,8 +83,9 @@ bool GameLoader::saveProgress(QuestCharacter playerToSave) {
 	tinyxml2::XMLElement* playerData = PlayersRoot->FirstChildElement(playerNode);
 
 	playerData->SetAttribute("CurrentExp", std::to_string(playerToSave.getExp()).c_str());
-	playerData->SetAttribute("NextLesson", playerToSave.getNextLesson().c_str());
-	playerData->SetAttribute("NextLessonUnit", playerToSave.getNextLessonUnit().c_str());
+	std::tuple <std::string, std::string> lessonInfo = playerToSave.getNextLesson();
+	playerData->SetAttribute("NextLesson", get<0>(lessonInfo).c_str());
+	playerData->SetAttribute("NextLessonUnit", get<1>(lessonInfo).c_str());
 
 	PlayersRoot->InsertEndChild(playerData);
 	xmlDoc.SaveFile(this->gameFilePath.string().c_str());

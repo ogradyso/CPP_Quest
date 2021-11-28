@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <tuple>
 
 #ifndef QuestCharacter_H
 #define QuestCharacter_H
@@ -10,16 +11,16 @@ private:
 	int learnerLevel;
 	int totalExperience;
 	int nextLessonTargetExp;
-	std::string nextLesson;
-	std::string nextLessonUnit;
 	std::vector<std::string> nextLessonPrompts;
 	std::vector<std::string> nextLessonAnswers;
 	std::string name;
 	std::string learnerClass;
 	std::string fighterClass;
+	std::tuple < std::string, std::string> lessonUnitTuple;
+	
 public:
 	QuestCharacter();
-	QuestCharacter(std::string, std::string, std::string, int, std::string, std::string);
+	QuestCharacter(std::string, std::string, std::string, int, std::tuple <std::string, std::string>);
 	void getLessonInfo();
 	int startNextLesson();
 	int getExp();
@@ -27,10 +28,8 @@ public:
 	std::string getLearnerClass();
 	std::string getFighterClass();
 	std::string getName();
-	std::string getNextLesson();
+	std::tuple <std::string, std::string> getNextLesson();
 	void setNextLesson();
-	std::string getNextLessonUnit();
-	void setNextLessonUnit();
 	int getNextLessonTargetExp();
 };
 
