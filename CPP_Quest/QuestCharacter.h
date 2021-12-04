@@ -11,14 +11,14 @@ private:
 	int learnerLevel;
 	int totalExperience;
 	int nextLessonTargetExp;
-	std::vector<std::string> nextLessonPrompts;
-	std::vector<std::string> nextLessonAnswers;
 	std::string name;
 	std::string learnerClass;
 	std::string fighterClass;
 	std::tuple < std::string, std::string> lessonUnitTuple;
 	
 public:
+	std::vector<std::string> nextLessonPrompts;
+	std::vector<std::string> nextLessonAnswers;
 	QuestCharacter();
 	QuestCharacter(std::string, std::string, std::string, int, std::tuple <std::string, std::string>);
 	void getLessonInfo();

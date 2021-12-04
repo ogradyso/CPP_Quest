@@ -1,0 +1,20 @@
+<TheBasics>
+    <Lesson1>
+        <LessonTitle>Programs</LessonTitle>
+        <LessonPrompts>
+            <Prompt>Prompt1</Prompt>
+            <Prompt>Prompt2</Prompt>
+            <Prompt>Prompt3</Prompt>
+        </LessonPrompts>
+        <LessonAnswers>
+            <Answer>1</Answer>
+            <Answer>2</Answer>
+            <Answer>3</Answer>
+        </LessonAnswers>
+        <LessonRewards>
+            <Experience>0</Experience>
+            <Items/>
+            <special/>
+        </LessonRewards>
+    </Lesson1>
+</TheBasics>
