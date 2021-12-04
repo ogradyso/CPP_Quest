@@ -53,3 +53,7 @@ The current version was developed on a Windows 10 machine with visual studio usi
 -create combat system
 -Create sidequest system
 -Add graphics
+
+### Code improvement:
+-fix the formatting of lesson prompts
+-replace xml escape characters

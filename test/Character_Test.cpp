@@ -4,7 +4,7 @@
 #include <boost/foreach.hpp>
 #include <boost/range/combine.hpp>
 
-TEST(CharacterTest, getters_tests) {
+TEST(CharacterTest, gettersTests) {
     //arrange
     std::tuple <std::string, std::string> lessonInfo;
     lessonInfo = std::make_tuple("Lesson1", "TheBasics");
@@ -39,7 +39,7 @@ TEST(CharacterTest, getters_tests) {
     }
 }
 
-TEST(CharacterTest, setters_tests) {
+TEST(CharacterTest, settersTests) {
     //arrange
     std::tuple <std::string, std::string> lessonInfo;
     lessonInfo = std::make_tuple("Lesson1", "TheBasics");
