@@ -39,9 +39,9 @@
         In this lesson we are going to write our first C++ program to print "Hello World!" to the conosle. Enter OK:
       </Prompt>
             <Prompt>
-        The first few lines of a C++ progam usually contain the code libraries the program needs to run properly. These are referred to as "inlcude" directives and they look like this:
+        The first few lines of a C++ progam usually contain the code libraries the program needs to run properly. These are referred to as "include" directives and they look like this:
 
-        #include &amp;lt;NameOfLibrary&amp;gt;
+        #include &lt;NameOfLibrary&gt;
 
         Sometimes these inlcude statments will vary in how they are written but we are getting ahead of ourselves.
         Write the include statement for the input-output stream (iostream) library:

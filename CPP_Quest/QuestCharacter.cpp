@@ -12,6 +12,23 @@ const std::vector<std::string> lessonUnits{"TheBasics", "UserDefinedTypes", "Mod
 "Templates", "ConceptsAndGenericProgramming","LibraryOverview", "StringsAndRegularExpressions", "InputAndOutput",
 "Containers", "Algorithms", "Utilities", "Numerics", "Concurrency", "HistoryAndCompatability"};
 
+std::string leftTrim(std::string str, std::string chars)
+{
+	str.erase(0, str.find_first_not_of(chars));
+	return str;
+}
+
+std::string rightTrim(std::string str, std::string chars)
+{
+	str.erase(str.find_last_not_of(chars) + 1);
+	return str;
+}
+
+std::string trimString(std::string str, std::string chars)
+{
+	return leftTrim(rightTrim(str, chars), chars);
+}
+
 QuestCharacter::QuestCharacter(std::string characterName, std::string characterLearnClass, std::string characterFightClass, int savedExperience, std::tuple <std::string, std::string> lessonInfo)
 {
 	this->learnerLevel = 0;
@@ -49,8 +66,9 @@ void QuestCharacter::getLessonInfo()
 	while (pListElement != nullptr)
 	{
 		const char* prompt = pListElement->GetText();
-
-		this->nextLessonPrompts.push_back(prompt);
+		std::string cleanPrompt = this->stringReplacement(prompt, "&gt;", ">");
+		cleanPrompt = this->stringReplacement(cleanPrompt, "&lt;", "<").c_str();
+		this->nextLessonPrompts.push_back(cleanPrompt);
 
 		pListElement = pListElement->NextSiblingElement("Prompt");
 	}
@@ -60,7 +78,9 @@ void QuestCharacter::getLessonInfo()
 	while (pListElement != nullptr)
 	{
 		const char* answer = pListElement->GetText();
-		this->nextLessonAnswers.push_back(answer);
+		std::string cleanAnswer = this->stringReplacement(answer, "&gt;", ">").c_str();
+		cleanAnswer = this->stringReplacement(cleanAnswer, "&lt;", "<").c_str();
+		this->nextLessonAnswers.push_back(cleanAnswer);
 
 		pListElement = pListElement->NextSiblingElement("Answer");
 	}
@@ -159,4 +179,15 @@ void QuestCharacter::setNextLesson() {
 	}
 
 	eResult = xmlDoc.SaveFile(lessonFilePath.string().c_str());
+}
+
+std::string QuestCharacter::stringReplacement(std::string str, const std::string from, const std::string to) {
+	if (from.empty())
+		return str;
+	size_t start_pos = 0;
+	while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
+		str.replace(start_pos, from.length(), to);
+		start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+	}
+	return trimString(str, " ");
 }

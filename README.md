@@ -45,7 +45,6 @@ The current version was developed on a Windows 10 machine with visual studio usi
 
 ## TODO:
 ### Game Development:
--create tests for classes
 -update lesson XMLs based on the chapters of Stroustrup's Tour of C++
 -Create storyline
 -Create leaner classes
@@ -55,5 +54,5 @@ The current version was developed on a Windows 10 machine with visual studio usi
 -Add graphics
 
 ### Code improvement:
--fix the formatting of lesson prompts
--replace xml escape characters
+-re-write QuestGame_Test cases to use child process for simulating user input. See link below:
+https://docs.microsoft.com/en-us/windows/win32/procthread/creating-a-child-process-with-redirected-input-and-output?redirectedfrom=MSDN

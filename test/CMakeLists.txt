@@ -73,7 +73,18 @@ enable_testing()
 #  hello_test.cc
 #)
 
-add_executable(CPP_Quest_Test "Character_Test.cpp" "GameLoader_Test.cpp" "../CPP_Quest/QuestCharacter.cpp" "../CPP_Quest/QuestCharacter.h" "../CPP_Quest/GameLoader.cpp" "../CPP_Quest/GameLoader.h" "../CPP_Quest/tinyxml2.cpp" "../CPP_Quest/tinyxml2.h")
+add_executable(CPP_Quest_Test 
+	"Character_Test.cpp"
+	"GameLoader_Test.cpp"
+	"QuestGame_Test.cpp"
+	"../CPP_Quest/QuestCharacter.cpp"
+	"../CPP_Quest/QuestCharacter.h" 
+	"../CPP_Quest/GameLoader.cpp" 
+	"../CPP_Quest/GameLoader.h" 
+	"../CPP_Quest/tinyxml2.cpp" 
+	"../CPP_Quest/tinyxml2.h" 
+	"QuestGame_Test.cpp"
+)
 
 target_link_libraries(
   CPP_Quest_Test

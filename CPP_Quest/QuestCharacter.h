@@ -31,6 +31,7 @@ public:
 	std::tuple <std::string, std::string> getNextLesson();
 	void setNextLesson();
 	int getNextLessonTargetExp();
+	std::string stringReplacement(std::string, std::string, std::string);
 };
 
 

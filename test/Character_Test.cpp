@@ -55,3 +55,22 @@ TEST(CharacterTest, settersTests) {
     EXPECT_EQ(testCharacter.getExp(), 8);
     EXPECT_EQ(testCharacter.getNextLesson(), testLessonInfo);
 }
+
+TEST(CharacterTest, stringReplacementTest) {
+    //arrange
+    std::tuple <std::string, std::string> lessonInfo;
+    lessonInfo = std::make_tuple("Lesson1", "TheBasics");
+    QuestCharacter testCharacter = QuestCharacter("test", "Application Developer", "Archer", 4, lessonInfo);
+    std::string testString1 = "";
+    std::string testString2 = "this is a sample";
+    std::string testString3 = "sample sample sample sample";
+    std::string testString4 = "test";
+    //act
+    //assert
+    EXPECT_EQ(testCharacter.stringReplacement(testString1, "sample", "test"), "");
+    EXPECT_EQ(testCharacter.stringReplacement(testString2, "sample", "test"), "this is a test");
+    EXPECT_EQ(testCharacter.stringReplacement(testString3, "sample", "test"), "test test test test");
+    EXPECT_EQ(testCharacter.stringReplacement(testString4, "sample", "test"), "test");
+    EXPECT_EQ(testCharacter.stringReplacement(testString2, "", "test"), "this is a sample");
+    EXPECT_EQ(testCharacter.stringReplacement(testString3, "sample", ""), "");
+}
