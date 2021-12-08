@@ -27,7 +27,7 @@
             <Answer>core language features</Answer>
         </LessonAnswers>
         <LessonRewards>
-          <Experience>0</Experience>
+          <Experience>2</Experience>
           <Items></Items>
           <special></special>
         </LessonRewards>
@@ -71,7 +71,7 @@
             <Answer>}</Answer>
         </LessonAnswers>
         <LessonRewards>
-          <Experience>2</Experience>
+          <Experience>5</Experience>
           <Items></Items>
           <special></special>
         </LessonRewards>
@@ -173,14 +173,81 @@
         <LessonTitle>Programs</LessonTitle>
         <LessonPrompts>
             <Prompt>
-        In this lesson, you will learn about compling source code into object files and then linking object files to create an executable program. Enter OK:
+        In this lesson, you will learn about types, variables and arithmetic. Enter OK:
+      </Prompt>
+        <Prompt>
+        In order introduce an entity into our program, we make a declaration which specifies the type of the entity. We declare a variable by declaring it's type and providing a name. 
+        For example, the following statement declares an integer names accountBalance:
+        int accountBalance;
+        The type identifier tells the computer to partition a portion of memory with the appropriate size for the specified data type. The exact amount of space in memory depends on your cpu/implementation.
+        The variable name provides the name used to reference that portion of memory. Some of the more common types are:
+        bool - a binary value usually set to true or false
+        char - a printable character
+        int - a whole-number numeric value
+        double - a rational number numeric value (decimal)
+        unsigned - a non-negative integer
+        
+        You will learn more about data types and memory size in a subsequent side-quest.
+        
+        How would you declare an integer to count the number of students in a classroom? Enter the correct data type:
+      </Prompt>
+        <Prompt>
+        Operators are used to combine and compare fundamental types:
+        Arithmetic operators:
+        x+y addition
+        +x  unary plus
+        x-y subtraction
+        -x  unary minus
+        x*y multiplication
+        x/y division
+        x%y remainder (modulus) for integers
+        
+        Comparison operators:
+        x==y equals
+        x!=y not equals
+        x&lt;y less than
+        x&gt;y greater than
+        x&lt;=y less than or equal to
+        x&gt;=y greater than or equal to
+        
+        Logical operators:
+        x&amp;y bitwise and
+        x|y bitwise or
+        x^y bitwise exclusive or
+        ~x bitwise complement
+        x&amp;&amp;y logical and
+        x||y logical or
+        !x logical not
+        
+        C++ will convert all variables based on the operations provided. You will learn about additional operators in a subsequent sidequest. 
+        
+        So if you add an integer to a double the result will be a double.
+        What would the result of the following code be? (true or false)
+        4 + 2 == 8 - 2
+      </Prompt>
+        <Prompt>
+        After declaring a variable it is often helpful to initiatlize it by setting its initial value. For example, if we have a variable called 
+        accountBalance and all new accounts have a minumum of 25 dollars, we would declare the variable like this:
+        double accountBalance {25.0};
+        
+        Notice that we used curly braces to set the initial value. There are a number of ways to perform intialization in C++ but it is recommended
+        to use 'braced initialization'. How would you declare a boolean variable named flagVariable and initialize its value as false?
+      </Prompt>
+        <Prompt>
+        When initializing a variable you don't always have to declare its type explicitly. Instead you can use the auto keyword to have the compiler
+        deduce the type based on the value passed during initialization. You do this by replacing the data type specifier with 'auto'. To demonstrate 
+        this, initialize a variable called transferAmount with a value of 2.5 and use auto type deduction to have the compiler deduce the data type:
       </Prompt>
         </LessonPrompts>
         <LessonAnswers>
             <Answer>OK</Answer>
+            <Answer>unsigned</Answer>
+            <Answer>true</Answer>
+            <Answer>bool flagVariable {false}</Answer>
+            <Answer>auto transferAmount {2.5}</Answer>
         </LessonAnswers>
         <LessonRewards>
-          <Experience>0</Experience>
+          <Experience>4</Experience>
           <Items></Items>
           <special></special>
         </LessonRewards>

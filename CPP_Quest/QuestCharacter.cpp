@@ -68,6 +68,7 @@ void QuestCharacter::getLessonInfo()
 		const char* prompt = pListElement->GetText();
 		std::string cleanPrompt = this->stringReplacement(prompt, "&gt;", ">");
 		cleanPrompt = this->stringReplacement(cleanPrompt, "&lt;", "<").c_str();
+		cleanPrompt = this->stringReplacement(cleanPrompt, "&amp;", "&").c_str();
 		this->nextLessonPrompts.push_back(cleanPrompt);
 
 		pListElement = pListElement->NextSiblingElement("Prompt");
@@ -80,6 +81,7 @@ void QuestCharacter::getLessonInfo()
 		const char* answer = pListElement->GetText();
 		std::string cleanAnswer = this->stringReplacement(answer, "&gt;", ">").c_str();
 		cleanAnswer = this->stringReplacement(cleanAnswer, "&lt;", "<").c_str();
+		cleanAnswer = this->stringReplacement(cleanAnswer, "&amp;", "&").c_str();
 		this->nextLessonAnswers.push_back(cleanAnswer);
 
 		pListElement = pListElement->NextSiblingElement("Answer");
